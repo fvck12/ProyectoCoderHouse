@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from HRApp.views import ListarEmpleados, BusquedaEmpleado, CrearEmpleados, ActualizarEmpleados, BorrarEmpleados
+from HRApp.views import ListarEmpleados, BusquedaEmpleado, CrearEmpleados, ActualizarEmpleados, BorrarEmpleados, hrAppInicio
 
 urlpatterns = [
-    path('', ListarEmpleados.as_view(), name="ListaEmpleados"),
+    path('', hrAppInicio, name="HRAppInicio"),
+    path('ListaEmpleados', ListarEmpleados.as_view(), name="ListaEmpleados"),
     path('CrearEmpleados/', CrearEmpleados.as_view(), name="CrearEmpleados"),
     path('ActualizarEmpleados/<int:pk>', ActualizarEmpleados.as_view(), name="ActualizarEmpleados"),
     path('BorrarEmpleados/<int:pk>', BorrarEmpleados.as_view(), name="BorrarEmpleados"),

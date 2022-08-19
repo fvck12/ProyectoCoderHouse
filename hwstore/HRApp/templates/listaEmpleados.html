@@ -1,4 +1,4 @@
-{% extends 'father.html' %}
+{% extends 'hrAppFather.html' %}
 
 {% load static %}
 
@@ -45,7 +45,7 @@
                     {% for empleado in object_list %}
                         <tr>
                             <td>
-                                {% if  empleado.foto_empleado%}
+                                {% if  empleado.foto_empleado %}
                                     <img src="{{empleado.foto_empleado.url}}" width="100" height="100">
                                 {% endif %}
                             </td>
