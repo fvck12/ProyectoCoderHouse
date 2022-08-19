@@ -13,13 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from HWStoreApp import urls as store_url
-from HRApp import urls as hr_url
+from django.urls import path
+from HRApp.views import ListarEmpleados, BusquedaEmpleado, CrearEmpleados, ActualizarEmpleados, BorrarEmpleados
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('HWStoreApp/', include(store_url)),
-    path('HRApp/', include(hr_url)),
+    path('', ListarEmpleados.as_view(), name="ListaEmpleados"),
+    path('CrearEmpleados/', CrearEmpleados.as_view(), name="CrearEmpleados"),
+    path('ActualizarEmpleados/<int:pk>', ActualizarEmpleados.as_view(), name="ActualizarEmpleados"),
+    path('BorrarEmpleados/<int:pk>', BorrarEmpleados.as_view(), name="BorrarEmpleados"),
+    path('BusquedaEmpleado/', BusquedaEmpleado.as_view(), name="BusquedaEmpleado"),
 ]
