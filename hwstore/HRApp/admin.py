@@ -6,7 +6,7 @@ class EmpleadosAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ['nombre', 'apellido', 'edad', 'sexo', 'fecha_nacimiento', 'dni', 'email', 'direccion', 'telefono', 'salario', 'puesto', 'horario', 'foto_empleado']
 
 class ProductosAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ['nombre', 'stock', 'precio', 'Foto']
+    list_display = ['nombre', "marca", 'stock', 'precio', 'Foto']
 
 class ClientesAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni', 'email', 'direccion', 'telefono', 'nombre_usuario', 'foto_cliente']

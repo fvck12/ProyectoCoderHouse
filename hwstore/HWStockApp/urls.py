@@ -13,20 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from HWStoreApp import urls as store_url
-from HRApp import urls as hr_url
-from HWStockApp import urls as hwstock_url
-from django.conf import settings
-from django.conf.urls.static import static  
+from django.urls import path
+from HWStockApp.views import HWStockAppInicio, CrearProducto, BusquedaProducto, ListarProductos, BorrarProducto, ActualizarProducto
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('HWStoreApp/', include(store_url)),
-    path('HRApp/', include(hr_url)),
-    path('HWStockApp/', include(hwstock_url)),
-]
+    path('', HWStockAppInicio, name="HWStockIndex"),
+    path('formProducto/', CrearProducto.as_view(), name="CrearProductos"),
+    path('busquedaProductos/', BusquedaProducto.as_view(), name="busquedaProductos"),
+    path('listaProductos/', ListarProductos.as_view(), name="listaProductos"),
+    path('eliminarProducto/<int:pk>', BorrarProducto.as_view(), name="eliminarProducto"),
+    path('editarProducto/<int:pk>', ActualizarProducto.as_view(), name="editarProducto"),
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)  
+]
