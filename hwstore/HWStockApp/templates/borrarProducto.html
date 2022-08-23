@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Hardware Store</title>
+<title>Product Delete</title>
 
 {% endblock title_section %}
 
@@ -13,7 +13,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Hardware Store Stock App</h1>
+            <h1 class="display-4 fw-bolder">Product Delete</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -25,9 +25,10 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='center'>
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="text-center text-white">
-                <p class="lead fw-normal text-black-50 mb-0">{{mensaje}}</p>
+                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> Seguro que desea eliminar el producto <b>{{productos.nombre}} {{productos.apellido}}</b>?
+                <input style="text-align:center" type="submit" value="Confirmar"></p>
             </div>
         </form>
     </div>

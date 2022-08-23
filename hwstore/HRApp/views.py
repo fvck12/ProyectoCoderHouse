@@ -1,7 +1,9 @@
 
 from django.shortcuts import render
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+
 from HRApp.models import Empleado, Cliente
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
@@ -47,44 +49,47 @@ class LogoutIfNotStaffMixin(AccessMixin):
 
 ############################## Pagina principal ##############################
 
-@login_required
+#@login_required
 def hrAppInicio(request):
     
     return render(request, "hrAppIndex.html")
 
 ############################## Empleados ##############################
 
-class ListarEmpleados(LoginRequiredMixin, ListView):
+#@login_required
+class ListarEmpleados(ListView):
     model = Empleado
     template_name = 'listaEmpleados.html'
 
+#@login_required
 class BusquedaEmpleado(ListView):
     template_name = 'busquedaEmpleado.html'
     model = Empleado
 
     def get_queryset(self):
-        print("Ingresando a la funcion busqueda....")
         query = self.request.GET.get('nombre')
         if query:
             object_list = self.model.objects.filter(nombre__icontains=query)
-            print("Object_list: ", object_list)
         else:
             object_list = self.model.objects.none()
         return object_list
 
-class CrearEmpleados(AccessMixin, CreateView):
+#Staff Member
+class CrearEmpleados(LoginRequiredMixin, CreateView):
     model = Empleado
     template_name = 'crearEmpleados.html'
     fields = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni', 'email', 'direccion', 'telefono', 'salario', 'puesto', 'horario', 'foto_empleado']
     success_url = '/HRApp/ListaEmpleados'
 
-class ActualizarEmpleados(UpdateView):
+#Staff Member
+class ActualizarEmpleados(LoginRequiredMixin, UpdateView):
     model = Empleado
     template_name = 'actualizarEmpleado.html'
     fields = ('__all__')
     success_url = '/HRApp/ListaEmpleados'
 
-class BorrarEmpleados(DeleteView):
+#Staff Member
+class BorrarEmpleados(LoginRequiredMixin, DeleteView):
     model = Empleado
     template_name = 'borrarEmpleado.html'
     fields = ('__all__')

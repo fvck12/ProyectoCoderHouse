@@ -1,7 +1,7 @@
-from multiprocessing import context
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+
+from HWStockApp.models import Productos
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
@@ -9,14 +9,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
-from HWStockApp.models import Productos
-
-# Create your views here.
-
-@login_required
-def HWStockAppInicio(request):
-    
-    return render(request, "HWStockIndex.html")
 
 ############################## Login ##############################
 
@@ -55,47 +47,51 @@ class LogoutIfNotStaffMixin(AccessMixin):
                 return self.handle_no_permission()
             return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
 
+############################## Pagina principal ##############################
+#@login_required
+def HWStockAppInicio(request):
+    
+    return render(request, "HWStockIndex.html")
 
 ############################## Productos ##############################
 
-#Staff Member
-class CrearProducto(CreateView):
+#@login_required
+class ListarProductos(ListView):
     model = Productos
-    template_name = 'formProducto.html'
-    fields = ['nombre', 'stock', 'precio', 'Foto']
-    success_url = '/HWStockApp/listaProductos'
+    template_name = 'listaProductos.html'
+    fields = ('__all__')
+    paginate_by: 10
 
-@login_required
+#@login_required
 class BusquedaProducto(ListView):
-    template_name = 'busquedaProductos.html'
+    template_name = 'busquedaProducto.html'
     model = Productos
 
     def get_queryset(self):
-        print("Ingresando a la funcion busqueda....")
         query = self.request.GET.get('nombre')
         if query:
             object_list = self.model.objects.filter(nombre__icontains=query)
-            print("Object_list: ", object_list)
         else:
             object_list = self.model.objects.none()
         return object_list
 
-@login_required
-class ListarProductos(ListView):
+#Staff Member
+class CrearProducto(LoginRequiredMixin, CreateView):
     model = Productos
-    template_name = 'listaProductos.html'
-    paginate_by: 10
+    template_name = 'crearProductos.html'
+    fields = ['nombre', 'stock', 'precio', 'Foto']
+    success_url = '/HWStockApp/ListarProductos/'
 
 #Staff Member
-class BorrarProducto(DeleteView):
+class ActualizarProductos(LoginRequiredMixin, UpdateView):
     model = Productos
-    template_name = 'eliminarProducto.html'
+    template_name = 'actualizarProducto.html'
     fields = ('__all__')
-    success_url = '/HWStockApp/listaProductos'
-    
+    success_url = '/HWStockApp/ListarProductos/'
+
 #Staff Member
-class ActualizarProducto(UpdateView):
+class BorrarProductos(LoginRequiredMixin, DeleteView):
     model = Productos
-    template_name = 'editarProducto.html'
+    template_name = 'borrarProducto.html'
     fields = ('__all__')
-    success_url = '/HWStockApp/listaProductos'
+    success_url = '/HWStockApp/ListarProductos/'

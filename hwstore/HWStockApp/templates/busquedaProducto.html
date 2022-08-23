@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Product List</title>
+<title>Product Search</title>
 
 {% endblock title_section %}
 
@@ -13,7 +13,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Product List</h1>
+            <h1 class="display-4 fw-bolder">Product Search</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -25,7 +25,7 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-            <form action= "{% url 'BusquedaProducto' %}" method="GET" enctype="multipart/form-data" >{% csrf_token %}
+            <form method="GET" enctype="multipart/form-data" >{% csrf_token %}
                 <p style="text-align:center"> Busqueda: <input style="text-align:center" type= "text" name= "nombre" placeholder="Escriba aqui el producto">
                 <input type="submit" value="Buscar"></p>
             </form>
@@ -35,13 +35,14 @@
                     <th scope="col">Foto</th>  
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>       
-                </tr>                   
+                    <th scope="col">Stock</th>             
+                </tr>
+                {% if object_list %}
                 <ul>
                     {% for producto in object_list %}
                         <tr>
                             <td>
-                                {% if  producto.Foto %}
+                                {% if  producto.Foto%}
                                     <img src="{{producto.Foto.url}}" width="100" height="100">
                                 {% endif %}
                             </td>
@@ -58,10 +59,14 @@
                             </td>
                         </tr>
                     {% endfor %}
-                </ul>                                                  
+                </ul>
+                {% endif %}                 
             </table>
             <div class="container justify-content-center">
-                <a href="{% url 'CrearProducto' %}"><p style="text-align:center">Crear Producto</p></a>
+                <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
+            </div>
+            <div class="container justify-content-center">
+                <a href="{% url 'CrearProducto' %}"><p style="text-align:center">Añade Producto</p></a>
             </div>
 </section>
 
