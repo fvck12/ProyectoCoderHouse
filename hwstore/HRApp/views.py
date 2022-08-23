@@ -3,9 +3,10 @@ from django.shortcuts import render
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 from HRApp.models import Empleado, Cliente
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 ############################## Login ##############################
 
@@ -37,8 +38,16 @@ def registro(request):
         form = UserCreationForm()
     return render(request, "hrAppRegistro.html", {"form": form})
 
+class LogoutIfNotStaffMixin(AccessMixin):
+        def dispatch(self, request, *args, **kwargs):
+            if not request.user.is_staff:
+                logout(request)
+                return self.handle_no_permission()
+            return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
+
 ############################## Pagina principal ##############################
 
+@login_required
 def hrAppInicio(request):
     
     return render(request, "hrAppIndex.html")
@@ -63,7 +72,7 @@ class BusquedaEmpleado(ListView):
             object_list = self.model.objects.none()
         return object_list
 
-class CrearEmpleados(CreateView):
+class CrearEmpleados(AccessMixin, CreateView):
     model = Empleado
     template_name = 'crearEmpleados.html'
     fields = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni', 'email', 'direccion', 'telefono', 'salario', 'puesto', 'horario', 'foto_empleado']

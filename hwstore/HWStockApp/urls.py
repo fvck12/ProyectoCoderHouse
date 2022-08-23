@@ -14,10 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from HWStockApp.views import HWStockAppInicio, CrearProducto, BusquedaProducto, ListarProductos, BorrarProducto, ActualizarProducto
+from HWStockApp.views import CrearProducto, BusquedaProducto, ListarProductos, BorrarProducto, ActualizarProducto
+from HWStockApp.views import HWStockAppInicio,login_request, registro
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', HWStockAppInicio, name="HWStockIndex"),
+    path('login/', login_request, name="Login"),
+    path('registro/', registro, name="Registro"),
+    path('logout/', LogoutView.as_view(template_name='hrAppLogout.html'), name="Logout"),
+
     path('formProducto/', CrearProducto.as_view(), name="CrearProductos"),
     path('busquedaProductos/', BusquedaProducto.as_view(), name="busquedaProductos"),
     path('listaProductos/', ListarProductos.as_view(), name="listaProductos"),
