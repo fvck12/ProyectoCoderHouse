@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Employed Create</title>
+<title>Human Resources</title>
 
 {% endblock title_section %}
 
@@ -13,7 +13,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Employed Create</h1>
+            <h1 class="display-4 fw-bolder">Human Resources</h1>
             <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
         </div>
     </div>
@@ -25,9 +25,11 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='left' action= "{% url 'CrearEmpleados' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <form ALIGN='left' action="" method="POST">{% csrf_token %}
+
             {{form.as_p}}
-            <input type="submit" value="Enviar">
+            
+            <button type="submit">Register</button>
         </form>
     </div>
 </section>

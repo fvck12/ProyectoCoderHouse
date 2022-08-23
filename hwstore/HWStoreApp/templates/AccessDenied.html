@@ -1,0 +1,39 @@
+{% extends 'father.html' %}
+
+{% load static %}
+
+{% block title_section %}
+
+<title>Shop Homepage</title>
+
+{% endblock title_section %}
+
+{% block header_section %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Access Denied</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Please login to access...</p>
+        </div>
+    </div>
+</header>
+
+{% endblock header_section %}
+
+{% block body_section %}
+
+<section class="py-5">
+    <div class="container justify-content-center">
+        <form ALIGN='center'>
+            <form action= "{% static '/hwstore/HRApp/templates/hrAppLogin.html' %}" class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">Login</button>  
+            <ul>Or</ul>
+            <form action= "{% url 'Registro' %}" class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">Register</button>
+            </form>
+        </form>
+    </div>
+</section>
+
+{% endblock body_section %}

@@ -13,12 +13,12 @@ def HWStockAppInicio(request):
     return render(request, "HWStockIndex.html")
 
 ############################## Productos ##############################
+
 class CrearProducto(CreateView):
     model = Productos
     template_name = 'formProducto.html'
     fields = ['nombre', 'stock', 'precio', 'Foto']
     success_url = '/HWStockApp/listaProductos'
-
 
 class BusquedaProducto(ListView):
     template_name = 'busquedaProductos.html'
@@ -34,12 +34,10 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.none()
         return object_list
 
-
 class ListarProductos(ListView):
     model = Productos
     template_name = 'listaProductos.html'
     paginate_by: 10
-
 
 class BorrarProducto(DeleteView):
     model = Productos
@@ -47,10 +45,8 @@ class BorrarProducto(DeleteView):
     fields = ('__all__')
     success_url = '/HWStockApp/listaProductos'
 
-
 class ActualizarProducto(UpdateView):
     model = Productos
     template_name = 'editarProducto.html'
     fields = ('__all__')
     success_url = '/HWStockApp/listaProductos'
-
