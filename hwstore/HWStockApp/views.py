@@ -29,17 +29,6 @@ def login_request (request):
         form = AuthenticationForm()  
     return render (request, "HWStockLogin.html", {"form":form})
 
-def registro(request):    
-    if request.method =="POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            form.save()
-            return render(request, "HWStockIndex.html", {"mensaje": "Se ha registrado!"})
-    else:
-        form = UserCreationForm()
-    return render(request, "HWStockRegistro.html", {"form": form})
-
 class LogoutIfNotStaffMixin(AccessMixin):
         def dispatch(self, request, *args, **kwargs):
             if not request.user.is_staff:

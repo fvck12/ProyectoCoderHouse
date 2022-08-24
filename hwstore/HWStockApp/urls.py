@@ -1,12 +1,11 @@
 from django.urls import path
 from HWStockApp.views import ListarProductos, BusquedaProducto, CrearProducto, ActualizarProductos, BorrarProductos
-from HWStockApp.views import HWStockAppInicio, login_request, registro
+from HWStockApp.views import HWStockAppInicio, login_request
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', HWStockAppInicio, name="HWStockIndex"),
     path('login_stock/', login_request, name="LoginStock"),
-    path('registro/', registro, name="Registro"),
     path('logout_stock/', LogoutView.as_view(template_name='HWStockLogout.html'), name="LogoutStock"),
 
     path('ListarProductos/', ListarProductos.as_view(), name="ListarProductos"),

@@ -1,13 +1,12 @@
 from django.urls import path
 from HRApp.views import ListarEmpleados, BusquedaEmpleado, CrearEmpleados, ActualizarEmpleados, BorrarEmpleados
-from HRApp.views import hrAppInicio, login_request, registro
+from HRApp.views import hrAppInicio, login_request
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', hrAppInicio, name="HRAppInicio"),
-    path('login/', login_request, name="Login"),
-    path('registro/', registro, name="Registro"),
-    path('logout/', LogoutView.as_view(template_name='hrAppLogout.html'), name="Logout"),
+    path('HRLogin/', login_request, name="HRLogin"),
+    path('HRLogout/', LogoutView.as_view(template_name='hrAppLogout.html'), name="HRLogout"),
     
     path('ListaEmpleados/', ListarEmpleados.as_view(), name="ListaEmpleados"),
     path('CrearEmpleados/', CrearEmpleados.as_view(), name="CrearEmpleados"),
