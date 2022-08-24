@@ -132,4 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Default URL redirect
 
-LOGIN_URL = '/HWStoreApp/AccessDenied'
+# LOGIN_URL = '/HWStoreApp/AccessDenied'

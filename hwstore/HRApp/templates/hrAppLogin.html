@@ -14,7 +14,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Human Resources</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <p class="lead fw-normal text-white-50 mb-0">Login Page</p>
         </div>
     </div>
 </header>
@@ -25,11 +25,25 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='center' action="" method="POST">{% csrf_token %}
-
-            {{form.as_p}}
-            
-            <button type="submit">Login</button>
+        <form ALING="center" method="post" action="{% url 'Login' %}">{% csrf_token %}
+            <div class="d-flex justify-content-center mb-3">
+                <table class="table table-borderless" style="width: 10%;">
+                    <tbody>
+                        <tr>
+                            <td class="h5">{{form.username.label}}:</td>
+                            <td>{{form.username}}</td>
+                        </tr>
+                        <tr>
+                            <td class="h5">{{form.password.label}}:</td>
+                            <td>{{form.password}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} {{ form.as_p }} {% endcomment %}
+            <div class="d-flex justify-content-center">
+                <input type="submit" class="btn btn-outline-dark" value="Login"/>
+            </div>
         </form>
     </div>
 </section>

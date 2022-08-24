@@ -1,0 +1,61 @@
+{% extends 'hrAppFather.html' %}
+
+{% load static %}
+
+{% block title_section %}
+
+<title>Login Page</title>
+
+{% endblock title_section %}
+
+{% block header_section %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Human Resources</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Login Page</p>
+        </div>
+    </div>
+</header>
+
+{% endblock header_section %}
+
+{% block body_section %}
+
+{% if not next %}
+    {% url 'HRApp:all' as next %}
+{% endif %}
+
+<section class="py-5">
+    <div class="container justify-content-center">
+        <div class="container">
+            {% if form.errors %}
+                <div class="alert alert-danger mt-5 text-center" role="alert">
+                    Your username and password didn't match. Please try again.
+                </div>
+            {% endif %}
+            <form ALING="center" method="post" action="{% url 'login' %}">{% csrf_token %}
+                <div class="d-flex justify-content-center mb-3">
+                    <table class="table table-borderless" style="width: 10%;">
+                        <tbody>
+                            <tr>
+                                <td class="h5">{{form.username.label}}:</td>
+                                <td>{{form.username}}</td>
+                            </tr>
+                            <tr>
+                                <td class="h5">{{form.password.label}}:</td>
+                                <td>{{form.password}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-outline-dark" value="Login"/>
+                </div>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+</section>
+
+{% endblock body_section %}

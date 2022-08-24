@@ -47,26 +47,17 @@
                             </ul>
                         </li>
                     </ul>
-                    
                     {% if user.is_authenticated %}
-                            <form action= "{% url 'Logout' %}" class="d-flex">
-                                <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>  
-                            <ul></ul>
-                            <form action= "{% url 'Registro' %}" class="d-flex">
-                                <button class="btn btn-outline-dark" type="submit">Register</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Bootstrap core JS<div class="container"><p>Bienvenido <b>{{user.username}}</b></p></div>-->
-                </nav>                  
+                    <form action= "{% url 'Logout' %}" class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>  
+                    </form>
+                </div>
+            </div>
+        </nav>                  
                     {% else %}
-                        <form action= "{% url 'Login' %}" class="d-flex">
-                            <button class="btn btn-outline-dark" type="submit">Login</button>
-                        </form>
-                        <ul></ul>
-                        <form action= "{% url 'Registro' %}" class="d-flex">
-                            <button class="btn btn-outline-dark" type="submit">Register</button>
-                        </form>
+                    <form action= "{% url 'Login' %}" class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">Login</button>
+                    </form>
                     {% endif %}
                 </div>
             </div>
