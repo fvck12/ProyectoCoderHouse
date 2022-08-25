@@ -25,49 +25,53 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-            <form method="GET" enctype="multipart/form-data" >{% csrf_token %}
-                <p style="text-align:center"> Busqueda: <input style="text-align:center" type= "text" name= "nombre" placeholder="Escriba aqui el producto">
-                <input type="submit" value="Buscar"></p>
-            </form>
+        <form method="GET" enctype="multipart/form-data">{% csrf_token %}
+            <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
+                    placeholder="Escriba aqui el producto">
+                <input type="submit" value="Buscar">
+            </p>
+        </form>
     </div>
-            <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
-                <tr>
-                    <th scope="col">Foto</th>  
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>             
-                </tr>
-                {% if object_list %}
-                <ul>
-                    {% for producto in object_list %}
-                        <tr>
-                            <td>
-                                {% if  producto.Foto%}
-                                    <img src="{{producto.Foto.url}}" width="100" height="100">
-                                {% endif %}
-                            </td>
-                            <td>{{producto.nombre}}</td>
-                            <td>{{producto.precio}}</td> 
-                            <td>{{producto.stock}}</td>
-                            <td>
-                                <button>
-                                    <a href="{% url 'BorrarProductos' producto.id %}">Eliminar</a>   
-                                </button>
-                                <button>
-                                    <a href="{% url 'ActualizarProductos' producto.id %}">Editar</a> 
-                                </button>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </ul>
-                {% endif %}                 
-            </table>
-            <div class="container justify-content-center">
-                <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
-            </div>
-            <div class="container justify-content-center">
-                <a href="{% url 'CrearProducto' %}"><p style="text-align:center">Añade Producto</p></a>
-            </div>
+    <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+        <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+        </tr>
+        {% if object_list %}
+        <ul>
+            {% for producto in object_list %}
+            <tr>
+                <td>
+                    {% if producto.Foto%}
+                    <img src="{{producto.Foto.url}}" width="100" height="100">
+                    {% endif %}
+                </td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.precio}}</td>
+                <td>{{producto.stock}}</td>
+                <td>
+                    <button>
+                        <a href="{% url 'BorrarProductos' producto.id %}">Eliminar</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'ActualizarProductos' producto.id %}">Editar</a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </table>
+    <div class="container justify-content-center">
+        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
+    </div>
+    <div class="container justify-content-center">
+        <a href="{% url 'CrearProducto' %}">
+            <p style="text-align:center">Añade Producto</p>
+        </a>
+    </div>
 </section>
 
 {% endblock body_section %}

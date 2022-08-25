@@ -12,46 +12,53 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 ############################## Login ##############################
 
-def login_request (request):
+def login_request(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
-        if form.is_valid():    
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
             usuario = form.cleaned_data.get("username")
-            contra = form.cleaned_data.get("password")    
-            user = authenticate(username=usuario, password=contra)    
-            if user is not None:   
-                login(request, user)   
-                return render(request, "HWStockIndex.html", {"mensaje": f"Bienvenido {usuario}!"})  
-            else:  
+            contra = form.cleaned_data.get("password")
+            user = authenticate(username=usuario, password=contra)
+            if user is not None:
+                login(request, user)
+                return render(request, "HWStockIndex.html", {"mensaje": f"Bienvenido {usuario}!"})
+            else:
                 return render(request, "HWStockIndex.html", {"mensaje": "Error, usuario o contraseña son incorrectos!"})
-        #return render(request, "hrAppIndex.html", {"mensaje": "Error en el formulario solicitado!"})
+        # return render(request, "hrAppIndex.html", {"mensaje": "Error en el formulario solicitado!"})
     else:
-        form = AuthenticationForm()  
-    return render (request, "HWStockLogin.html", {"form":form})
+        form = AuthenticationForm()
+    return render(request, "HWStockLogin.html", {"form": form})
+
 
 class LogoutIfNotStaffMixin(AccessMixin):
-        def dispatch(self, request, *args, **kwargs):
-            if not request.user.is_staff:
-                logout(request)
-                return self.handle_no_permission()
-            return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            logout(request)
+            return self.handle_no_permission()
+        return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
 
 ############################## Pagina principal ##############################
-#@login_required
+# @login_required
+
+
 def HWStockAppInicio(request):
-    
+
     return render(request, "HWStockIndex.html")
 
 ############################## Productos ##############################
 
-#@login_required
+# @login_required
+
+
 class ListarProductos(ListView):
     model = Productos
     template_name = 'listaProductos.html'
     fields = ('__all__')
     paginate_by: 10
 
-#@login_required
+# @login_required
+
+
 class BusquedaProducto(ListView):
     template_name = 'busquedaProducto.html'
     model = Productos
@@ -64,21 +71,27 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.none()
         return object_list
 
-#Staff Member
+# Staff Member
+
+
 class CrearProducto(LoginRequiredMixin, CreateView):
     model = Productos
     template_name = 'crearProductos.html'
     fields = ['nombre', 'stock', 'precio', 'Foto']
     success_url = '/HWStockApp/ListarProductos/'
 
-#Staff Member
+# Staff Member
+
+
 class ActualizarProductos(LoginRequiredMixin, UpdateView):
     model = Productos
     template_name = 'actualizarProducto.html'
     fields = ('__all__')
     success_url = '/HWStockApp/ListarProductos/'
 
-#Staff Member
+# Staff Member
+
+
 class BorrarProductos(LoginRequiredMixin, DeleteView):
     model = Productos
     template_name = 'borrarProducto.html'

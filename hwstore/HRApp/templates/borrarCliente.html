@@ -27,8 +27,10 @@
     <div class="container justify-content-center">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="text-center text-white">
-                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> Seguro que desea eliminar el cliente <b>{{cliente.nombre}} {{cliente.apellido}}</b>?
-                <input style="text-align:center" type="submit" value="Confirmar"></p>
+                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> Seguro que desea eliminar el
+                    cliente <b>{{cliente.nombre}} {{cliente.apellido}}</b>?
+                    <input style="text-align:center" type="submit" value="Confirmar">
+                </p>
             </div>
         </form>
     </div>

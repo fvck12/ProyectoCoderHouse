@@ -25,53 +25,57 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-            <form action= "{% url 'BusquedaCliente' %}" method="GET" enctype="multipart/form-data" >{% csrf_token %}
-                <p style="text-align:center"> Busqueda: <input style="text-align:center" type= "text" name= "nombre" placeholder="Escriba aqui el cliente">
-                <input type="submit" value="Buscar"></p>
-            </form>
+        <form action="{% url 'BusquedaCliente' %}" method="GET" enctype="multipart/form-data">{% csrf_token %}
+            <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
+                    placeholder="Escriba aqui el cliente">
+                <input type="submit" value="Buscar">
+            </p>
+        </form>
     </div>
-            <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
-                <tr>
-                    <th scope="col">Foto</th>  
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Nombre de Usuario</th>
-                    <th scope="col">Sexo</th>
-                    <th scope="col">Fecha de Nacimiento</th>      
-                    <th scope="col">Email</th>    
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Opciones</th>          
-                </tr>                   
-                <ul>
-                    {% for cliente in object_list %}
-                        <tr>
-                            <td>
-                                {% if  cliente.foto_cliente %}
-                                    <img src="{{cliente.foto_cliente.url}}" width="100" height="100">
-                                {% endif %}
-                            </td>
-                            <td>{{cliente.nombre}}</td>
-                            <td>{{cliente.edad}}</td> 
-                            <td>{{cliente.email}}</td>
-                            <td>{{cliente.telefono}}</td> 
-                            <td>{{cliente.nombre_usuario}}</td>
-                            <td>{{cliente.direccion}}</td>
-                            <td>
-                                <button>
-                                    <a href="{% url 'BorrarCliente' cliente.id %}">Eliminar</a>   
-                                </button>
-                                <button>
-                                    <a href="{% url 'ActualizarCliente' cliente.id %}">Editar</a> 
-                                </button>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </ul>                                                  
-            </table>
-            <div class="container justify-content-center">
-                <a href="{% url 'CrearCliente' %}"><p style="text-align:center">Añade Cliente</p></a>
-            </div>
+    <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+        <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre de Usuario</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Email</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Opciones</th>
+        </tr>
+        <ul>
+            {% for cliente in object_list %}
+            <tr>
+                <td>
+                    {% if cliente.foto_cliente %}
+                    <img src="{{cliente.foto_cliente.url}}" width="100" height="100">
+                    {% endif %}
+                </td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.edad}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.telefono}}</td>
+                <td>{{cliente.nombre_usuario}}</td>
+                <td>{{cliente.direccion}}</td>
+                <td>
+                    <button>
+                        <a href="{% url 'BorrarCliente' cliente.id %}">Eliminar</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'ActualizarCliente' cliente.id %}">Editar</a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </ul>
+    </table>
+    <div class="container justify-content-center">
+        <a href="{% url 'CrearCliente' %}">
+            <p style="text-align:center">Añade Cliente</p>
+        </a>
+    </div>
 </section>
 
 {% endblock body_section %}
