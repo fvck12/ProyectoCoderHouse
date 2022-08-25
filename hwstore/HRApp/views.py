@@ -86,38 +86,41 @@ class BorrarEmpleados(LoginRequieredHRApp, DeleteView):
 
 ############################## Clientes ##############################
 
-class CrearCliente(CreateView):
+#Staff Member
+class CrearCliente(LoginRequieredHRApp, CreateView):
     model = Cliente
-    template_name = 'formClientes.html'
+    template_name = 'crearCliente.html'
     fields = ['nombre', 'apellido', 'nombre_usuario', 'sexo', 'fecha_nacimiento', 'dni', 'email', 'direccion', 'telefono', 'foto_cliente']
-    success_url = '/webapp/listaClientes' 
+    success_url = '/HRApp/ListaClientes' 
 
-class BusquedaCliente(ListView):
+#@login_required
+class BusquedaCliente(LoginRequieredHRApp, ListView):
     template_name = 'busquedaCliente.html'
     model = Cliente
 
     def get_queryset(self):
-        print("Ingresando a la funcion busqueda....")
         query = self.request.GET.get('nombre')
         if query:
             object_list = self.model.objects.filter(nombre__icontains=query)
-            print("Object_list: ", object_list)
         else:
             object_list = self.model.objects.none()
         return object_list
 
-class ListarClientes(ListView):
+#@login_required
+class ListarClientes(LoginRequieredHRApp, ListView):
     model = Cliente
     template_name = 'listaClientes.html'
 
-class BorrarCliente(DeleteView):
+#Staff Member
+class BorrarCliente(LoginRequieredHRApp, DeleteView):
     model = Cliente
-    template_name = 'eliminarCliente.html'
+    template_name = 'borrarCliente.html'
     fields = ('__all__')
-    success_url = '/webapp/listaClientes'
+    success_url = '/HRApp/ListaClientes'
 
-class ActualizarCliente(UpdateView):
+#Staff Member
+class ActualizarCliente(LoginRequieredHRApp, UpdateView):
     model = Cliente
-    template_name = 'editarCliente.html'
+    template_name = 'actualizarCliente.html'
     fields = ('__all__')
-    success_url = '/webapp/listaClientes'
+    success_url = '/HRApp/ListaClientes'
