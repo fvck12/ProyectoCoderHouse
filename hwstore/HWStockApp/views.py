@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
 from HWStockApp.models import Productos
@@ -12,7 +12,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 ############################## Login ##############################
 
-def login_request(request):
+def LoginStock(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -21,12 +21,10 @@ def login_request(request):
             user = authenticate(username=usuario, password=contra)
             if user is not None:
                 login(request, user)
-                return render(request, "HWStockIndex.html", {"mensaje": f"Bienvenido {usuario}!"})
+                return redirect("/HWStockApp/")
             else:
-                return render(request, "HWStockIndex.html", {"mensaje": "Error, usuario o contraseña son incorrectos!"})
-        # return render(request, "hrAppIndex.html", {"mensaje": "Error en el formulario solicitado!"})
-    else:
-        form = AuthenticationForm()
+                return redirect("/HWStockApp/")
+    form = AuthenticationForm()
     return render(request, "HWStockLogin.html", {"form": form})
 
 
@@ -41,7 +39,7 @@ class LogoutIfNotStaffMixin(AccessMixin):
 # @login_required
 
 
-def HWStockAppInicio(request):
+def HWStockInicio(request):
 
     return render(request, "HWStockIndex.html")
 

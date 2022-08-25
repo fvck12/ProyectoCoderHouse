@@ -1,13 +1,13 @@
 from django.urls import path
 from HRApp.views import ListarEmpleados, BusquedaEmpleado, CrearEmpleados, ActualizarEmpleados, BorrarEmpleados
-from HRApp.views import ListarClientes, ActualizarCliente, BorrarCliente, BusquedaCliente, CrearCliente
-from HRApp.views import hrAppInicio, login_request
+from HRApp.views import ListarClientes, BusquedaCliente, CrearClientes, ActualizarClientes, BorrarClientes
+from HRApp.views import HRAppInicio, LoginHRApp
 from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
-    path('', hrAppInicio, name="HRAppInicio"),
-    path('HRLogin/', login_request, name="HRLogin"),
+    path('', HRAppInicio, name="HRAppInicio"),
+    path('HRLogin/', LoginHRApp, name="HRLogin"),
     path('HRLogout/', LogoutView.as_view(template_name='hrAppLogout.html'),
          name="HRLogout"),
 
@@ -20,9 +20,9 @@ urlpatterns = [
     path('BusquedaEmpleado/', BusquedaEmpleado.as_view(), name="BusquedaEmpleado"),
 
     path('ListaClientes/', ListarClientes.as_view(), name="ListaClientes"),
-    path('CrearClientes/', CrearCliente.as_view(), name="CrearCliente"),
+    path('CrearClientes/', CrearClientes.as_view(), name="CrearClientes"),
     path('ActualizarClientes/<int:pk>',
-         ActualizarCliente.as_view(), name="ActualizarCliente"),
-    path('BorrarClientes/<int:pk>', BorrarCliente.as_view(), name="BorrarCliente"),
+         ActualizarClientes.as_view(), name="ActualizarClientes"),
+    path('BorrarClientes/<int:pk>', BorrarClientes.as_view(), name="BorrarClientes"),
     path('BusquedaCliente/', BusquedaCliente.as_view(), name="BusquedaCliente"),
 ]

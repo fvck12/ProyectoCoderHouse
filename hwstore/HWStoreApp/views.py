@@ -3,6 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 
 
+############################## Login ##############################
+
 def LoginStore(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -18,7 +20,8 @@ def LoginStore(request):
     form = AuthenticationForm()
     return render(request, "HWStoreLogin.html", {"form": form})
 
-# Create your views here.
+
+############################## Pagina principal ##############################
 
 
 def HWStoreInicio(request):

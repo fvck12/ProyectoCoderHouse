@@ -61,10 +61,10 @@
                 <td>{{cliente.direccion}}</td>
                 <td>
                     <button>
-                        <a href="{% url 'BorrarCliente' cliente.id %}">Eliminar</a>
+                        <a href="{% url 'BorrarClientes' cliente.id %}">Eliminar</a>
                     </button>
                     <button>
-                        <a href="{% url 'ActualizarCliente' cliente.id %}">Editar</a>
+                        <a href="{% url 'ActualizarClientes' cliente.id %}">Editar</a>
                     </button>
                 </td>
             </tr>
@@ -72,7 +72,7 @@
         </ul>
     </table>
     <div class="container justify-content-center">
-        <a href="{% url 'CrearCliente' %}">
+        <a href="{% url 'CrearClientes' %}">
             <p style="text-align:center">Añade Cliente</p>
         </a>
     </div>

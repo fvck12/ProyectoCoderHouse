@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 
 
-def registro(request):
+############################## Registro ##############################
+
+def Register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
