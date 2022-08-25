@@ -1,13 +1,9 @@
 from django.shortcuts import render
-
-from HRApp.models import Empleado, Cliente
-from HWStockApp.models import Productos
-
-#Login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 
-def login_request (request):
+
+def LoginStore (request):
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
         if form.is_valid():
@@ -16,30 +12,15 @@ def login_request (request):
             user = authenticate(username=usuario, password=contra)
             if user is not None:
                 login(request, user)
-                return render(request, "HWStoreApp/", {"mensaje": f"Bienvenido{usuario}"})
+                return render(request, "HWStoreIndex.html", {"mensaje": f"Bienvenido{usuario}"})
             else:
-                return render(request, "HWStoreApp/", {"mensaje":"Error, datos erroneos"})
+                return render(request, "HWStoreIndex.html", {"mensaje":"Error, datos erroneos"})
         else:
-                return render(request, "HWStoreApp/", {"mensaje": "Erorr, formulario erroneo"})
+                return render(request, "HWStoreIndex.html", {"mensaje": "Erorr, formulario erroneo"})
     form = AuthenticationForm()
-    return render (request, "login.html", {"form":form})
-
-def registro(request):    
-    if request.method =="POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            form.save()
-            return render(request, "HWStoreApp/", {"mensaje":"Usuario creado"})
-    else:
-        form = UserCreationForm()
-    return render(request, "registro.html", {"form": form})
+    return render (request, "HWStoreLogin.html", {"form":form})
 
 # Create your views here.
-def inicio(request):
+def HWStoreInicio(request):
     
-    return render (request, "index.html")
-
-def access_denied(request):
-
-    return render (request, "AccessDenied.html")
+    return render (request, "HWStoreIndex.html")

@@ -7,7 +7,7 @@ def registro(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             form.save()
-            return render(request, "hrAppIndex.html", {"mensaje": "Se ha registrado!"})
+            return render(request, "HWStoreIndex.html", {"mensaje": "Se ha registrado!"})
     else:
         form = UserCreationForm()
     return render(request, "registration/register.html", {"form": form})

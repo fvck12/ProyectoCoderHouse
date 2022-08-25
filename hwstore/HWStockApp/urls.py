@@ -5,8 +5,8 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', HWStockAppInicio, name="HWStockIndex"),
-    path('login_stock/', login_request, name="LoginStock"),
-    path('logout_stock/', LogoutView.as_view(template_name='HWStockLogout.html'), name="LogoutStock"),
+    path('LoginStock/', login_request, name="LoginStock"),
+    path('LogoutStock/', LogoutView.as_view(template_name='HWStockLogout.html'), name="LogoutStock"),
 
     path('ListarProductos/', ListarProductos.as_view(), name="ListarProductos"),
     path('CrearProducto/', CrearProducto.as_view(), name="CrearProducto"),

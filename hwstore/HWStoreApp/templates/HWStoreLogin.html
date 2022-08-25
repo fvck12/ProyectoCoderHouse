@@ -1,12 +1,10 @@
-{% extends 'father.html' %}
-
-{% include 'HRApp/' %}
+{% extends 'HWStoreFather.html' %}
 
 {% load static %}
 
 {% block title_section %}
 
-<title>Shop Homepage</title>
+<title>Hardware Store Login</title>
 
 {% endblock title_section %}
 
@@ -15,8 +13,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Access Denied</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Please login to access...</p>
+            <h1 class="display-4 fw-bolder">Hardware Store App</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Login Page</p>
         </div>
     </div>
 </header>
@@ -27,8 +25,13 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        
+        <form ALIGN='center' action="" method="POST">{% csrf_token %}
+
+            {{form.as_p}}
+            
+            <button type="submit">Login</button>
+        </form>
     </div>
 </section>
 
-{% endblock body_section %}
+{% endblock body_section %} 
