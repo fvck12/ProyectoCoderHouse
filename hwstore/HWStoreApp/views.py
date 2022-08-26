@@ -14,9 +14,9 @@ def LoginStore(request):
             user = authenticate(username=usuario, password=contra)
             if user is not None:
                 login(request, user)
-                return redirect("/HWStoreApp/")
+                return redirect("HWStoreBienvenida")
             else:
-                return redirect("/HWStoreApp/")
+                return redirect("HWStoreBienvenida")
     form = AuthenticationForm()
     return render(request, "HWStoreLogin.html", {"form": form})
 
@@ -27,3 +27,11 @@ def LoginStore(request):
 def HWStoreInicio(request):
 
     return render(request, "HWStoreIndex.html")
+
+def HWStoreAbout(request):
+    
+    return render(request, "HWStoreAbout.html")
+
+def HWStoreBienvenida(request):
+    
+    return render(request, "HWStoreIndex.html", {"mensaje": "Bienvenido!"})

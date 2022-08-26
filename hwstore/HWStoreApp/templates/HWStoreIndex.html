@@ -10,11 +10,12 @@
 
 {% block header_section %}
 
-<header class="bg-dark py-5">
+<header class="bg-dark py-5" style="background-image: url('{% static 'assets/index_background.jpg' %}'); background-repeat:no-repeat; background-position: center; margin-bottom: 0; padding-top: 7%; padding-bottom: 7%;">
+<!--<header class="bg-dark py-5">-->
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Welcome to Shop online</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <h1 class="display-4 fw-bolder">Bienvenido a tu tienda online</h1>
+            <p class="lead fw-normal text-white mb-0">Lo que buscas, lo encuentras aqui</p>
             {{mensaje}}
         </div>
     </div>

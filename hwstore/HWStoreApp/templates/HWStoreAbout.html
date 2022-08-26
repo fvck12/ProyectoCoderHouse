@@ -1,0 +1,52 @@
+{% extends 'HWStoreFather.html' %}
+
+{% load static %}
+
+{% block title_section %}
+  <title>About</title>
+{% endblock %}
+
+{% block header_section %}
+
+  <header class="bg-dark py-5" style="background-image: url('{% static 'assets/background_dos.jpeg' %}'); background-repeat:no-repeat; background-position: center; margin-bottom: 0; padding-top: 7%; padding-bottom: 7%;"> 
+  <!--class="bg-dark py-5"-->
+    <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+        <h1 class="display-4 fw-bolder">+ Nuestra Empresa</h1>
+        <p class="lead fw-normal text-white mb-0">+ Tu preferencia</p>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block body_section %}
+  <section class="py-5">
+    <div class="container justify-content-center">
+      <h1 class="display-6 fw-bolder">+ ¿Quiénes somos?</h1>
+      <p class="lead fw-normal text-black-50 mb-10">Nombre de la empresa es una empresa que opera en el retail, industria donde ha alcanzado una posición de liderazgo en el mercado de tiendas para el mejoramiento del hogar. Su actividad se focaliza en desarrollar y proveer soluciones a los proyectos de construcción de sus clientes, además de satisfacer las necesidades de mejoramiento y decoración de sus hogares, ofreciendo excelencia en el servicio, integridad en su trabajo y un fuerte compromiso con la comunidad.</p>
+      <p class="lead fw-normal text-black-50 mb-10">
+        <b>En Nombre de la empresa, nuestro compromiso es crecer de manera responsable.</b>
+        Entendemos que la creación de valor económico no puede separarse de las obligaciones que tenemos con nuestro capital humano, la sociedad y el medioambiente.
+      </p>
+      <p class="lead fw-normal text-black-50 mb-10">
+        Buscamos ser la mejor y más grande empresa de Latinoamérica en distribución de materiales de construcción y productos para el mejoramiento del hogar, y así contribuir a mejorar la calidad de vida de las personas de las comunidades donde actuamos.
+        <b>Estamos comprometidos con nuestros clientes, trabajadores, proveedores, el entorno y la sociedad en general.</b>
+      </p>
+      <p class="lead fw-normal text-black-50 mb-10">
+        En definitiva,
+        <b>queremos aportar al desarrollo integral de los países en los que estamos presentes.</b>
+      </p>
+      <h1 class="display-6 fw-bolder">+ Nuestra Visión</h1>
+      <p class="lead fw-normal text-black-50 mb-10">Ser la empresa líder de proyectos para el hogar y construcción que, mejorando la calidad de vida, sea la más querida, admirada y respetada por la comunidad, clientes, trabajadores y proveedores en América.</p>
+      <h1 class="display-6 fw-bolder">+ Nuestra Misión</h1>
+      <p class="lead fw-normal text-black-50 mb-10">Desarrollarnos con innovación y sostenibilidad, ofreciendo los mejores productos, servicios y asesoría, al mejor precio del mercado, para inspirar y construir los sueños y proyectos de nuestros clientes.</p>
+      <h1 class="display-6 fw-bolder">+ Nuestros Valores</h1>
+      <p class="lead fw-normal text-black-50 mb-10">Son la base que marca nuestras relaciones y la forma de hacer negocios. Nuestros valores representan aquello en lo que creemos, trazan el camino que nos permite llevar adelante nuestra misión. Constituyen los principios, objetivos y prioridades estratégicas sobre los cuales se construye nuestra empresa.</p>
+      <p class="lead fw-normal text-black-50 mb-10">
+        <b>Estos principios pueden sintetizarse a través de los     siguientes valores:</b>
+      </p>
+    <div ALING="center" style="background-image: url('{% static 'assets/valores.jpeg' %}'); width:700px; height:267px; margin:0 auto; margin-bottom: 0; padding-top: 7%; padding-bottom: 7%;">
+    </div>
+    </div>
+  </section>
+{% endblock %}
