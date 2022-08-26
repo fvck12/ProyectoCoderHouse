@@ -25,7 +25,8 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form action="{% url 'BusquedaCliente' %}" method="GET" enctype="multipart/form-data">{% csrf_token %}
+        <form action="{% url 'BusquedaCliente' %}" method="GET" enctype="multipart/form-data">
+            {% csrf_token %}
             <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
                     placeholder="Escriba aqui el cliente">
                 <input type="submit" value="Buscar">
@@ -54,11 +55,13 @@
                     {% endif %}
                 </td>
                 <td>{{cliente.nombre}}</td>
-                <td>{{cliente.edad}}</td>
-                <td>{{cliente.email}}</td>
-                <td>{{cliente.telefono}}</td>
+                <td>{{cliente.apellido}}</td>
                 <td>{{cliente.nombre_usuario}}</td>
+                <td>{{cliente.sexo}}</td>
+                <td>{{cliente.fecha_nacimiento}}</td>
+                <td>{{cliente.email}}</td>
                 <td>{{cliente.direccion}}</td>
+                <td>{{cliente.telefono}}</td>
                 <td>
                     <button>
                         <a href="{% url 'BorrarClientes' cliente.id %}">Eliminar</a>
