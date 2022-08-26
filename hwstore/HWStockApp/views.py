@@ -75,7 +75,7 @@ class BusquedaProducto(ListView):
 class CrearProducto(LoginRequiredMixin, CreateView):
     model = Productos
     template_name = 'crearProductos.html'
-    fields = ['nombre', 'stock', 'precio', 'Foto', 'categoria', 'marca',]
+    fields = ('__all__')
     success_url = '/HWStockApp/ListarProductos/'
 
 # Staff Member
