@@ -32,37 +32,37 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="{% url 'HRAppInicio' %}">Home</a></li>
+                            href="{% url 'HRAppInicio' %}">Inicio</a></li>
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Employee</a>
+                            data-bs-toggle="dropdown" aria-expanded="false">Empleados</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'CrearEmpleados' %}">Create</a></li>
-                            <li><a class="dropdown-item" href="{% url 'ListaEmpleados' %}">List</a></li>
-                            <li><a class="dropdown-item" href="{% url 'BusquedaEmpleado' %}">Search</a></li>
+                            <li><a class="dropdown-item" href="{% url 'CrearEmpleados' %}">Crear</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ListaEmpleados' %}">Listar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'BusquedaEmpleado' %}">Buscar</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Client</a>
+                            data-bs-toggle="dropdown" aria-expanded="false">Cliente</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'CrearClientes' %}">Create</a></li>
-                            <li><a class="dropdown-item" href="{% url 'ListaClientes' %}">List</a></li>
-                            <li><a class="dropdown-item" href="{% url 'BusquedaCliente' %}">Search</a></li>
+                            <li><a class="dropdown-item" href="{% url 'CrearClientes' %}">Crear</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ListaClientes' %}">Listar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'BusquedaCliente' %}">Buscar</a></li>
                         </ul>
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
                 <form action="{% url 'HRLogout' %}" class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>
+                    <button class="btn btn-outline-dark" type="submit">Desconectar <b>{{user.username}}</b></button>
                 </form>
             </div>
         </div>
     </nav>
     {% else %}
     <form action="{% url 'HRLogin' %}" class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">Login</button>
+        <button class="btn btn-outline-dark" type="submit">Conectar</button>
     </form>
     {% endif %}
     </div>

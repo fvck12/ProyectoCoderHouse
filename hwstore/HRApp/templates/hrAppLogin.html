@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Human Resources</title>
+<title>Administracion de personal y clientes</title>
 
 {% endblock title_section %}
 
@@ -13,8 +13,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Human Resources</h1>
-            <p class="lead fw-normal text-white-50 mb-0">Login Page</p>
+            <h1 class="display-4 fw-bolder">Administracion de personal y clientes</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Iniciar sesión</p>
         </div>
     </div>
 </header>
@@ -30,11 +30,11 @@
                 <table class="table table-borderless" style="width: 10%;">
                     <tbody>
                         <tr>
-                            <td class="h5">{{form.username.label}}:</td>
+                            <td class="h5">Usuario:</td>
                             <td>{{form.username}}</td>
                         </tr>
                         <tr>
-                            <td class="h5">{{form.password.label}}:</td>
+                            <td class="h5">Contraseña:</td>
                             <td>{{form.password}}</td>
                         </tr>
                     </tbody>
@@ -42,7 +42,7 @@
             </div>
             {% comment %} {{ form.as_p }} {% endcomment %}
             <div class="d-flex justify-content-center">
-                <input type="submit" class="btn btn-outline-dark" value="Login" />
+                <input type="submit" class="btn btn-outline-dark" value="Conectar" />
             </div>
         </form>
     </div>

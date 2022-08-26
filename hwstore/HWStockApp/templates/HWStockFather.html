@@ -47,19 +47,11 @@
 
                 {% if user.is_authenticated %}
                     <form action="{% url 'LogoutStock' %}" class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>
-                    </form>
-                    <ul></ul>
-                    <form action="{% url 'Registro' %}" class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Registro</button>
+                        <button class="btn btn-outline-dark" type="submit">Desconectar <b>{{user.username}}</b></button>
                     </form>
                 {% else %}
                     <form action="{% url 'LoginStock' %}" class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Login</button>
-                    </form>
-                    <ul></ul>
-                    <form action="{% url 'Registro' %}" class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Register</button>
+                        <button class="btn btn-outline-dark" type="submit">Contectar</button>
                     </form>
                 {% endif %}
 

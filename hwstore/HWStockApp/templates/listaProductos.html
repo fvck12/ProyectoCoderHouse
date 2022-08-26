@@ -14,7 +14,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Lista productos</h1>
-            
+            <p class="lead fw-normal text-white-50 mb-0">+</p>
         </div>
     </div>
 </header>
@@ -37,6 +37,7 @@
             <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
             <th scope="col">Marca</th>
+            <th scope="col">Categoría</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
         </tr>
@@ -50,6 +51,7 @@
                 </td>
                 <td>{{producto.nombre}}</td>
                 <td>{{producto.marca}}</td>
+                <td>{{producto.categoria}}</td>
                 <td>{{producto.precio}}</td>
                 <td>{{producto.stock}}</td>
                 <td>
