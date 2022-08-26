@@ -19,3 +19,16 @@ class Productos(models.Model):
 
     def __str__(self) -> str:
         return f'{self.nombre}'
+    categoria_opcion = (
+        ('C', 'Construccion',),
+        ('P', 'Pintura',),
+        ('B', 'Bannos',),
+        ('M', 'Madera',),
+        ('H', 'Hogar',),
+        ('J', 'Jardin',),
+        ('E', 'Electricidad',),
+        ('O', 'Otros',),
+    )
+    categoria = models.CharField(
+        max_length=1, choices=categoria_opcion, blank=True
+    )
