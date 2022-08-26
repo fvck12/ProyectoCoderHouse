@@ -46,25 +46,27 @@
                 </ul>
 
                 {% if user.is_authenticated %}
-                <form action="{% url 'LogoutStock' %}" class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>
+                    <form action="{% url 'LogoutStock' %}" class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">Logout <b>{{user.username}}</b></button>
+                    </form>
                     <ul></ul>
                     <form action="{% url 'Registro' %}" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">Registro</button>
                     </form>
+                {% else %}
+                    <form action="{% url 'LoginStock' %}" class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">Login</button>
+                    </form>
+                    <ul></ul>
+                    <form action="{% url 'Registro' %}" class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">Register</button>
+                    </form>
+                {% endif %}
+
             </div>
-        </div>
-        <!-- Bootstrap core JS<div class="container"><p>Bienvenido <b>{{user.username}}</b></p></div>-->
+        </div>        
     </nav>
-    {% else %}
-    <form action="{% url 'LoginStock' %}" class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">Login</button>
-    </form>
-    <ul></ul>
-    <form action="{% url 'Registro' %}" class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">Register</button>
-    </form>
-    {% endif %}
+
     </div>
     </div>
     </nav>
