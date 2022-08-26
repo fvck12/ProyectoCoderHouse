@@ -5,7 +5,7 @@ from djmoney.models.fields import MoneyField
 
 
 class Productos(models.Model):
-    nombre = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=30)
     marca = models.CharField(max_length=20)
     stock = models.IntegerField()
     precio = MoneyField(

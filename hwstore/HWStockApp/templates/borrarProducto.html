@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Product Delete</title>
+<title>Borrar producto</title>
 
 {% endblock title_section %}
 
@@ -13,8 +13,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Product Delete</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <h1 class="display-4 fw-bolder">Borrar producto</h1>
+            
         </div>
     </div>
 </header>
@@ -27,8 +27,8 @@
     <div class="container justify-content-center">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="text-center text-white">
-                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> Seguro que desea eliminar el
-                    producto <b>{{productos.nombre}} {{productos.apellido}}</b>?
+                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> ¿Seguro que desea eliminar el
+                    producto <b>{{productos.nombre}}</b>?
                     <input style="text-align:center" type="submit" value="Confirmar">
                 </p>
             </div>

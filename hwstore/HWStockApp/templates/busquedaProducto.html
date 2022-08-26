@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Product Search</title>
+<title>Busqueda producto</title>
 
 {% endblock title_section %}
 
@@ -13,8 +13,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Product Search</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <h1 class="display-4 fw-bolder">Busqueda producto</h1>
+            
         </div>
     </div>
 </header>
@@ -36,6 +36,7 @@
         <tr>
             <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
         </tr>
@@ -49,6 +50,7 @@
                     {% endif %}
                 </td>
                 <td>{{producto.nombre}}</td>
+                <td>{{producto.marca}}</td>
                 <td>{{producto.precio}}</td>
                 <td>{{producto.stock}}</td>
                 <td>
