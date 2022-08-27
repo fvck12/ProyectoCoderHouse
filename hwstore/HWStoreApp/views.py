@@ -40,8 +40,8 @@ class LogoutIfNotStaffMixin(AccessMixin):
 
 
 def HWStoreInicio(request):
-
-    return render(request, "HWStoreIndex.html")
+    productos= Productos.objects.all()
+    return render(request, "HWStoreIndex.html", {"productos":productos})
 
 def HWStoreAbout(request):
     
@@ -73,9 +73,7 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.none()
         return object_list
 
-def tienda(request):
-    productos= Productos.objects.all()
-    return render(request, "HWStoreIndex.html", {"productos":productos})
+############################## Carrito ##############################
 
 def agregar_productos(request, productos_id):
     carrito = Carrito(request)
