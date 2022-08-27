@@ -8,7 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from HWStockApp.models import Productos
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
-from hwstore.HWStoreApp.carrito import Carrito
+from HWStoreApp.carrito import Carrito
 
 
 ############################## Login ##############################
