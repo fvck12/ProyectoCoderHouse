@@ -8,6 +8,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from HWStockApp.models import Productos
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
+from hwstore.HWStoreApp.carrito import Carrito
+
 
 ############################## Login ##############################
 
@@ -71,3 +73,29 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.none()
         return object_list
 
+def tienda(request):
+    productos= Productos.objects.all()
+    return render(request, "HWStoreIndex.html", {"productos":productos})
+
+def agregar_productos(request, productos_id):
+    carrito = Carrito(request)
+    productos= Productos.objects.get(id=productos_id)
+    carrito.agregar(productos)
+    return redirect("HWStoreInicio")
+
+def eliminar_productos(request, productos_id):
+    carrito = Carrito(request)
+    productos = Productos.objects.get(id=productos_id)
+    carrito.eliminar(productos)
+    return redirect("HWStoreInicio")
+
+def restar_productos(request, productos_id):
+    carrito = Carrito(request)
+    productos = Productos.objects.get(id=productos_id)
+    carrito.restar(productos)
+    return redirect("HWStoreInicio")
+
+def eliminar_carrito(request):
+    carrito= Carrito(request)
+    carrito.limpiar()
+    return redirect("HWStoreInicio")
