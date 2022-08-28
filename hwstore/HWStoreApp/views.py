@@ -79,21 +79,21 @@ def agregar_productos(request, productos_id):
     carrito = Carrito(request)
     productos= Productos.objects.get(id=productos_id)
     carrito.agregar(productos)
-    return redirect("HWStoreInicio")
+    return redirect("ComprarProductos")
 
 def eliminar_productos(request, productos_id):
     carrito = Carrito(request)
     productos = Productos.objects.get(id=productos_id)
     carrito.eliminar(productos)
-    return redirect("HWStoreInicio")
+    return redirect("ComprarProductos")
 
 def restar_productos(request, productos_id):
     carrito = Carrito(request)
     productos = Productos.objects.get(id=productos_id)
     carrito.restar(productos)
-    return redirect("HWStoreInicio")
+    return redirect("ComprarProductos")
 
 def eliminar_carrito(request):
     carrito= Carrito(request)
     carrito.limpiar()
-    return redirect("HWStoreInicio")
+    return redirect("ComprarProductos")
