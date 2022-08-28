@@ -34,7 +34,8 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {% for producto in object_list  %}
+            {% if object_list %}
+                {% for producto in object_list  %}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -58,9 +59,12 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-                        
+                {% endfor %}
+            {% endif %}            
         </div>
+    </div>
+    <div class="container justify-content-center">
+        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
     </div>
 </section>
 <center><div class="col-4" >
