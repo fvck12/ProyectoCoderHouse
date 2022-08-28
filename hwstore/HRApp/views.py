@@ -6,9 +6,10 @@ from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
 from HRApp.models import Empleado, Usuario
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin as LoginRequieredHRApp, AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin as LoginRequieredHRApp
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -31,12 +32,10 @@ def LoginHRApp(request):
     return render(request, "hrAppLogin.html", {"form": form})
 
 
-class LogoutIfNotStaffMixin(AccessMixin):
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_staff:
-            logout(request)
-            return self.handle_no_permission()
-        return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
+class StaffRequiredMixin(LoginRequieredHRApp, UserPassesTestMixin):
+    
+    def test_func(self):
+        return self.request.user.is_staff
 
 ############################## Registro ##############################
 
@@ -67,14 +66,14 @@ def HRAppInicio(request):
 # @login_required
 
 
-class ListarEmpleados(LoginRequieredHRApp, ListView):
+class ListarEmpleados(StaffRequiredMixin, ListView):
     model = Empleado
     template_name = 'listaEmpleados.html'
 
 # @login_required
 
 
-class BusquedaEmpleado(LoginRequieredHRApp, ListView):
+class BusquedaEmpleado(StaffRequiredMixin, ListView):
     template_name = 'busquedaEmpleado.html'
     model = Empleado
 
@@ -89,7 +88,7 @@ class BusquedaEmpleado(LoginRequieredHRApp, ListView):
 # Staff Member
 
 
-class CrearEmpleados(LoginRequieredHRApp, CreateView):
+class CrearEmpleados(StaffRequiredMixin, CreateView):
     model = Empleado
     template_name = 'crearEmpleados.html'
     fields = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni', 'email',
@@ -99,7 +98,7 @@ class CrearEmpleados(LoginRequieredHRApp, CreateView):
 # Staff Member
 
 
-class ActualizarEmpleados(LoginRequieredHRApp, UpdateView):
+class ActualizarEmpleados(StaffRequiredMixin, UpdateView):
     model = Empleado
     template_name = 'actualizarEmpleado.html'
     fields = ('__all__')
@@ -108,7 +107,7 @@ class ActualizarEmpleados(LoginRequieredHRApp, UpdateView):
 # Staff Member
 
 
-class BorrarEmpleados(LoginRequieredHRApp, DeleteView):
+class BorrarEmpleados(StaffRequiredMixin, DeleteView):
     model = Empleado
     template_name = 'borrarEmpleado.html'
     fields = ('__all__')
@@ -119,14 +118,14 @@ class BorrarEmpleados(LoginRequieredHRApp, DeleteView):
 # @login_required
 
 
-class ListarUsuario(LoginRequieredHRApp, ListView):
+class ListarUsuario(StaffRequiredMixin, ListView):
     model = Usuario
     template_name = 'listaUsuario.html'
 
 # @login_required
 
 
-class BusquedaUsuario(LoginRequieredHRApp, ListView):
+class BusquedaUsuario(StaffRequiredMixin, ListView):
     template_name = 'busquedaUsuario.html'
     model = Usuario
 
@@ -141,7 +140,7 @@ class BusquedaUsuario(LoginRequieredHRApp, ListView):
 # Staff Member
 
 
-class CrearUsuario(LoginRequieredHRApp, CreateView):
+class CrearUsuario(StaffRequiredMixin, CreateView):
     model = Usuario
     template_name = 'crearUsuario.html'
     fields = ['first_name', 'last_name', 'username', 'sexo', 'fecha_nacimiento',
@@ -151,7 +150,7 @@ class CrearUsuario(LoginRequieredHRApp, CreateView):
 # Staff Member
 
 
-class ActualizarUsuario(LoginRequieredHRApp, UpdateView):
+class ActualizarUsuario(StaffRequiredMixin, UpdateView):
     model = Usuario
     template_name = 'actualizarUsuario.html'
     fields = ('__all__')
@@ -160,7 +159,7 @@ class ActualizarUsuario(LoginRequieredHRApp, UpdateView):
 # Staff Member
 
 
-class BorrarUsuario(LoginRequieredHRApp, DeleteView):
+class BorrarUsuario(StaffRequiredMixin, DeleteView):
     model = Usuario
     template_name = 'borrarUsuario.html'
     fields = ('__all__')

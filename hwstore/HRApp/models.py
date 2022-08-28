@@ -56,7 +56,7 @@ class Empleado(Persona):
 
 class Usuario(AbstractUser):
     foto_usuario = models.ImageField(
-        upload_to="Usuario/%Y/m%/%d", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to=f"Usuario/%Y/%m/%d/", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     sexo_opcion = (
         ('F', 'Femenino',),
         ('M', 'Masculino',),

@@ -33,18 +33,29 @@
             </p>
         </form>
     </div>
-    <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+    <style>
+    table {
+        border-collapse: collapse;
+      }
+      
+      th, td {
+        padding: 0px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      tr:hover {background-color: coral;}
+    </style>
+    <table style="width:100%"   >
+    <!--<table style="border:1px solid black;margin-left:auto;margin-right:auto;">-->
         <tr>
             <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Nombre de Usuario</th>
-            <th scope="col">Sexo</th>
-            <th scope="col">Fecha de Nacimiento</th>
             <th scope="col">Email</th>
             <th scope="col">Direccion</th>
             <th scope="col">Telefono</th>
-            <th scope="col">Opciones</th>
+            <th style="text-align: center;" colspan="2">Opciones</th>
         </tr>
         <ul>
             {% for usuario in object_list %}
@@ -58,18 +69,22 @@
                 <td>{{usuario.first_name}}</td>
                 <td>{{usuario.last_name}}</td>
                 <td>{{usuario.username}}</td>
-                <td>{{usuario.sexo}}</td>
-                <td>{{usuario.fecha_nacimiento}}</td>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.direccion}}</td>
                 <td>{{usuario.telefono}}</td>
                 <td>
-                    <button>
-                        <a href="{% url 'BorrarUsuario' usuario.id %}">Eliminar</a>
-                    </button>
-                    <button>
-                        <a href="{% url 'ActualizarUsuario' usuario.id %}">Editar</a>
-                    </button>
+                    <form action="{% url 'BorrarUsuario' usuario.id %}" class="d-flex">
+                        <button style="margin-left:25%; margin-right:25%;" class="btn btn-outline-dark" type="submit">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'ActualizarUsuario' usuario.id %}" class="d-flex">
+                        <button style="margin-left:25%; margin-right:25%;" class="btn btn-outline-dark" type="submit">
+                            Editar
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endif %}

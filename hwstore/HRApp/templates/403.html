@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Crear Usuario</title>
+<title>403 Forbidden</title>
 
 {% endblock title_section %}
 
@@ -13,8 +13,8 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Crear Usuario</h1>
-            <p class="lead fw-normal text-white-50 mb-0">+</p>
+            <h1 class="display-6 fw-bolder">No tiene permisos para ingresar a esta página</h1>
+            <p class="lead fw-normal text-white-50 mb-0">+ Desconectese y pruebe con otra cuenta</p>
         </div>
     </div>
 </header>
@@ -25,10 +25,10 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='left' action="{% url 'CrearUsuario' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="Enviar">
+        <form ALIGN='center'>
+            <div class="text-center text-white">
+                <p class="lead fw-normal text-black-50 mb-0">{{mensaje}}</p>
+            </div>
         </form>
     </div>
 </section>
