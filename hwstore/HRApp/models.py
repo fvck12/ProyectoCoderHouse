@@ -1,6 +1,7 @@
 from xmlrpc.client import Boolean
 from django.db import models
 from djmoney.models.fields import MoneyField
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # Create your models here.
 
@@ -53,10 +54,29 @@ class Empleado(Persona):
         return f'{self.nombre}'
 
 
-class Cliente(Persona):
-    nombre_usuario = models.CharField(max_length=8, blank=False)
+class Cliente(AbstractUser):
     foto_cliente = models.ImageField(
-        upload_to="Clientes/", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Clientes/%Y/m%/%d", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    sexo_opcion = (
+        ('F', 'Femenino',),
+        ('M', 'Masculino',),
+        ('O', 'Otro',),
+    )
+    sexo = models.CharField(
+        max_length=1, choices=sexo_opcion, blank=True
+    )
+    dni = models.IntegerField(null=True, blank=True)
+    direccion = models.CharField(max_length=80, blank=True)
+    telefono = models.IntegerField(null=True, blank=True)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
+
+    def edad(self):
+        import datetime
+        return int((datetime.date.today() - self.fecha_nacimiento).days / 365.25)
+    edad = property(edad)
 
     def __str__(self) -> str:
         return f'{self.nombre}'
+
+    class Meta:
+        verbose_name = "Cliente"

@@ -1,3 +1,6 @@
+from .forms import UserRegisterForm
+from django.contrib import messages
+
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
@@ -34,6 +37,21 @@ class LogoutIfNotStaffMixin(AccessMixin):
             logout(request)
             return self.handle_no_permission()
         return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
+
+############################## Registro ##############################
+
+def Register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            form.save()
+            messages.success(request, f'Usuario {username} creado')
+            return redirect("/HWStoreApp/")
+    else:
+        form = UserRegisterForm()
+
+    return render(request, "registration/register.html", {"form": form})
 
 ############################## Pagina principal ##############################
 

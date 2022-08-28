@@ -13,8 +13,9 @@ class ProductosAdmin(ImportExportMixin, admin.ModelAdmin):
 
 
 class ClientesAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni',
-                    'email', 'direccion', 'telefono', 'nombre_usuario', 'foto_cliente']
+    list_display = ['first_name', 'last_name', 'sexo', 'fecha_nacimiento', 'dni',
+                    'email', 'direccion', 'telefono', 'username', 'foto_cliente', 'is_active']
+        
 
 
 # Register your models here.
