@@ -9,6 +9,8 @@ class Productos(models.Model):
     marca = models.CharField(max_length=20)
     stock = models.IntegerField()
     precio = models.IntegerField()
+    precio_currency = models.CharField(max_length=20)
+
     Foto = models.ImageField(upload_to="Productos/", height_field=None,
                              width_field=None, max_length=None, null=True, blank=True)
 
