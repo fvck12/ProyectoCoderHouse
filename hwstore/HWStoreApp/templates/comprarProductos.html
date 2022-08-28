@@ -34,8 +34,7 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {% if object_list %}
-                {% for producto in object_list  %}
+            {% for producto in object_list  %}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -50,7 +49,7 @@
                                 <p class="card-text">Marca: {{producto.marca}}</p>
                                 <p class="card-text">Stock: {{producto.stock}}</p>                                
                                 <!-- Product price-->
-                                {{producto.precio}}
+                                US$ {{producto.precio}}
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -59,16 +58,14 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            {% endif %}            
+            {% endfor %}
+                        
         </div>
     </div>
-    <div class="container justify-content-center">
-        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
+    <center><div class="col-4" >
+        {% include 'carrito.html' %}
     </div>
+    </center>
 </section>
-<center><div class="col-4" >
-    {% include 'carrito.html' %}
-</div>
-</center>
+
 {% endblock body_section %}

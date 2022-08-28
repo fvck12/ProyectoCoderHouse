@@ -2,7 +2,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="row" colspan="4" class="text-center">CARRITO</th> 
+            <th scope="row" colspan="4" class="text-center">CARRITO</th>                
         </tr>
         <tr>
             <th scope= "col">NOMBRE</th>
@@ -23,7 +23,7 @@
                 <a href="{% url 'Add' value.productos_id %}" class="badge btn btn-dark badge-dark">+</a>
                 <a href="{% url 'Sub' value.productos_id %}" class="badge btn btn-dark badge-dark">-</a>
             </td>
-        </tr>  
+        </tr>        
     
 {% endfor %}
 {% else %}
@@ -31,11 +31,12 @@
             <td colspan="4">
                 <div class="alert alert-danger text-center">Sin Productos</div>
             </td>
-        </tr>   
-{% endif %}
+        </tr>           
+{% endif %} 
         <tr>
+            <td colspan="2"></td>                
             <th scope="row"> Total:</th>
-            <td colspan="2">$ {{total_carrito}}</td>
+            <td colspan="2">US$ {{total_carrito}}</td>
         </tr>
 </tbody>
 </table>

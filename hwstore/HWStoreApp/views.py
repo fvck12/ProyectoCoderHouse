@@ -51,6 +51,10 @@ def HWStoreBienvenida(request):
     
     return render(request, "HWStoreIndex.html", {"mensaje": "Bienvenido!"})
 
+def HWStoreCarrito(request):
+    
+    return render(request, "HWStoreCarrito.html")
+
 ############################## Productos ##############################
 
 
