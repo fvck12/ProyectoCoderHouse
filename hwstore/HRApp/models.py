@@ -54,9 +54,9 @@ class Empleado(Persona):
         return f'{self.nombre}'
 
 
-class Cliente(AbstractUser):
-    foto_cliente = models.ImageField(
-        upload_to="Clientes/%Y/m%/%d", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+class Usuario(AbstractUser):
+    foto_usuario = models.ImageField(
+        upload_to="Usuario/%Y/m%/%d", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     sexo_opcion = (
         ('F', 'Femenino',),
         ('M', 'Masculino',),
@@ -76,7 +76,7 @@ class Cliente(AbstractUser):
     edad = property(edad)
 
     def __str__(self) -> str:
-        return f'{self.nombre}'
+        return f'{self.first_name}'
 
     class Meta:
-        verbose_name = "Cliente"
+        verbose_name = "Usuario"

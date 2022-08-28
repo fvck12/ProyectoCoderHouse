@@ -3,7 +3,6 @@ from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
-
 class Productos(models.Model):
     nombre = models.CharField(max_length=30)
     marca = models.CharField(max_length=20)

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportMixin
-from .models import Empleado, Cliente
+from .models import Empleado, Usuario
 
 
 class EmpleadosAdmin(ImportExportMixin, admin.ModelAdmin):
@@ -12,12 +12,12 @@ class ProductosAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ['nombre', "marca", 'stock', 'precio', 'Foto']
 
 
-class ClientesAdmin(ImportExportMixin, admin.ModelAdmin):
+class UsuariosAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'sexo', 'fecha_nacimiento', 'dni',
-                    'email', 'direccion', 'telefono', 'username', 'foto_cliente', 'is_active']
+                    'email', 'direccion', 'telefono', 'username', 'foto_usuario', 'is_active']
         
 
 
 # Register your models here.
 admin.site.register(Empleado, EmpleadosAdmin)
-admin.site.register(Cliente, ClientesAdmin)
+admin.site.register(Usuario, UsuariosAdmin)

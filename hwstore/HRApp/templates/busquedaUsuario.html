@@ -4,7 +4,7 @@
 
 {% block title_section %}
 
-<title>Buscar Cliente</title>
+<title>Buscar Usuario</title>
 
 {% endblock title_section %}
 
@@ -13,7 +13,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Buscar Cliente</h1>
+            <h1 class="display-4 fw-bolder">Buscar Usuario</h1>
             <p class="lead fw-normal text-white-50 mb-0">+</p>
         </div>
     </div>
@@ -26,8 +26,8 @@
 <section class="py-5">
     <div class="container justify-content-center">
         <form method="GET" enctype="multipart/form-data">{% csrf_token %}
-            <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
-                    placeholder="Escriba aqui el cliente">
+            <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="first_name"
+                    placeholder="Escriba aqui el usuario">
                 <input type="submit" value="Buscar">
             </p>
         </form>
@@ -47,25 +47,25 @@
         </tr>
         {% if object_list %}
         <ul>
-            {% for cliente in object_list %}
+            {% for usuario in object_list %}
             <tr>
                 <td>
-                    {% if cliente.foto_cliente %}
-                    <img src="{{cliente.foto_cliente.url}}" width="100" height="100">
+                    {% if usuario.foto_usuario %}
+                    <img src="{{usuario.foto_usuario.url}}" width="100" height="100">
                     {% endif %}
                 </td>
-                <td>{{cliente.nombre}}</td>
-                <td>{{cliente.edad}}</td>
-                <td>{{cliente.email}}</td>
-                <td>{{cliente.telefono}}</td>
-                <td>{{cliente.nombre_usuario}}</td>
-                <td>{{cliente.direccion}}</td>
+                <td>{{usuario.first_name}}</td>
+                <td>{{usuario.last_name}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.direccion}}</td>
                 <td>
                     <button>
-                        <a href="{% url 'BorrarClientes' cliente.id %}">Eliminar</a>
+                        <a href="{% url 'BorrarUsuarios' usuario.id %}">Eliminar</a>
                     </button>
                     <button>
-                        <a href="{% url 'ActualizarClientes' cliente.id %}">Editar</a>
+                        <a href="{% url 'ActualizarUsuarios' usuario.id %}">Editar</a>
                     </button>
                 </td>
             </tr>
@@ -74,11 +74,11 @@
         {% endif %}
     </table>
     <div class="container justify-content-center">
-        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
+        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.first_name}}</strong></p>
     </div>
     <div class="container justify-content-center">
-        <a href="{% url 'CrearClientes' %}">
-            <p style="text-align:center">Añade Cliente</p>
+        <a href="{% url 'CrearUsuarios' %}">
+            <p style="text-align:center">Añade Usuario</p>
         </a>
     </div>
 </section>

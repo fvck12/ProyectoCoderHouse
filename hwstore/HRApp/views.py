@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
-from HRApp.models import Empleado, Cliente
+from HRApp.models import Empleado, Usuario
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
@@ -114,26 +114,26 @@ class BorrarEmpleados(LoginRequieredHRApp, DeleteView):
     fields = ('__all__')
     success_url = '/HRApp/ListaEmpleados'
 
-############################## Clientes ##############################
+############################## Usuarios ##############################
 
 # @login_required
 
 
-class ListarClientes(LoginRequieredHRApp, ListView):
-    model = Cliente
-    template_name = 'listaClientes.html'
+class ListarUsuario(LoginRequieredHRApp, ListView):
+    model = Usuario
+    template_name = 'listaUsuario.html'
 
 # @login_required
 
 
-class BusquedaCliente(LoginRequieredHRApp, ListView):
-    template_name = 'busquedaCliente.html'
-    model = Cliente
+class BusquedaUsuario(LoginRequieredHRApp, ListView):
+    template_name = 'busquedaUsuario.html'
+    model = Usuario
 
     def get_queryset(self):
-        query = self.request.GET.get('nombre')
+        query = self.request.GET.get('first_name')
         if query:
-            object_list = self.model.objects.filter(nombre__icontains=query)
+            object_list = self.model.objects.filter(first_name__icontains=query)
         else:
             object_list = self.model.objects.none()
         return object_list
@@ -141,27 +141,27 @@ class BusquedaCliente(LoginRequieredHRApp, ListView):
 # Staff Member
 
 
-class CrearClientes(LoginRequieredHRApp, CreateView):
-    model = Cliente
-    template_name = 'crearCliente.html'
-    fields = ['nombre', 'apellido', 'nombre_usuario', 'sexo', 'fecha_nacimiento',
-              'dni', 'email', 'direccion', 'telefono', 'foto_cliente']
-    success_url = '/HRApp/ListaClientes'
+class CrearUsuario(LoginRequieredHRApp, CreateView):
+    model = Usuario
+    template_name = 'crearUsuario.html'
+    fields = ['first_name', 'last_name', 'username', 'sexo', 'fecha_nacimiento',
+              'dni', 'email', 'direccion', 'telefono', 'foto_usuario']
+    success_url = '/HRApp/ListaUsuario'
 
 # Staff Member
 
 
-class ActualizarClientes(LoginRequieredHRApp, UpdateView):
-    model = Cliente
-    template_name = 'actualizarCliente.html'
+class ActualizarUsuario(LoginRequieredHRApp, UpdateView):
+    model = Usuario
+    template_name = 'actualizarUsuario.html'
     fields = ('__all__')
-    success_url = '/HRApp/ListaClientes'
+    success_url = '/HRApp/ListaUsuario'
 
 # Staff Member
 
 
-class BorrarClientes(LoginRequieredHRApp, DeleteView):
-    model = Cliente
-    template_name = 'borrarCliente.html'
+class BorrarUsuario(LoginRequieredHRApp, DeleteView):
+    model = Usuario
+    template_name = 'borrarUsuario.html'
     fields = ('__all__')
-    success_url = '/HRApp/ListaClientes'
+    success_url = '/HRApp/ListaUsuario'

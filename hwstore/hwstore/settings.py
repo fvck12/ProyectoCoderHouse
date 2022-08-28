@@ -136,4 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # LOGIN_URL = '/HWStoreApp/AccessDenied'
 
-AUTH_USER_MODEL = 'HRApp.Cliente'
+AUTH_USER_MODEL = 'HRApp.Usuario'
