@@ -54,9 +54,9 @@ def HWStoreBienvenida(request):
 ############################## Productos ##############################
 
 
-class ListarProductos(ListView):
+class ComprarProductos(ListView):
     model = Productos
-    template_name = 'listaProductos.html'
+    template_name = 'comprarProductos.html'
     fields = ('__all__')
     paginate_by: 9
 

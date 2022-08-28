@@ -1,7 +1,7 @@
 from django.urls import path
 from HWStoreApp.views import HWStoreInicio, LoginStore, HWStoreAbout, HWStoreBienvenida
 from django.contrib.auth.views import LogoutView
-from HWStoreApp.views import ListarProductos, BusquedaProducto
+from HWStoreApp.views import ComprarProductos, BusquedaProducto
 from HWStoreApp.views import agregar_productos, eliminar_productos, restar_productos, eliminar_carrito
 
 urlpatterns = [
@@ -12,7 +12,7 @@ urlpatterns = [
          name="LogoutStore"),
     path('HWStoreBienvenida/', HWStoreBienvenida, name="HWStoreBienvenida"),
 
-    path('ListarProductos/', ListarProductos.as_view(), name="ListarProductos"),
+    path('ComprarProductos/', ComprarProductos.as_view(), name="ComprarProductos"),
     path('BusquedaProducto/', BusquedaProducto.as_view(), name="BusquedaProducto"),
 
     path('agregar/<int:productos_id>/', agregar_productos, name="Add"),
