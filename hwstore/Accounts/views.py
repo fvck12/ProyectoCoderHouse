@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
-from Accounts.models import User
+from Accounts.models import User, Profile
 from django.contrib.auth.decorators import login_required 
 from Accounts.forms import UserUpdateForm, ProfileUpdateForm
+
+# Registro de usuarios
 
 def register(request):
     if request.method == 'POST':
@@ -16,25 +18,29 @@ def register(request):
 
         if password == confirm_password:
             if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username is already taken')
+                messages.info(request, 'El usuario ya existe!')
                 return redirect(register)
             elif User.objects.filter(email=email).exists():
-                messages.info(request, 'Email is already taken')
+                messages.info(request, 'El correo ya esta registrado')
                 return redirect(register)
             else:
                 user = User.objects.create_user(username=username, password=password,
                                                 email=email, first_name=first_name, last_name=last_name)
                 user.save()
-
+                user = User.objects.get(username=username)
+                profile = Profile(user=user)
+                profile.save()
+                
                 return redirect('login_user')
 
         else:
-            messages.info(request, 'Both passwords are not matching')
+            messages.info(request, 'Las contraseñas no coinciden')
             return redirect(register)
 
     else:
-        return render(request, 'HWStoreRegistro.html')
+        return render(request, 'Register.html')
 
+# Login de usuarios
 
 def login_user(request):
     if request.method == 'POST':
@@ -47,11 +53,11 @@ def login_user(request):
             auth.login(request, user)
             return redirect('home')
         else:
-            messages.info(request, 'Invalid Username or Password')
+            messages.info(request, 'Usuario o contraseña inválidos')
             return redirect('login_user')
 
     else:
-        return render(request, 'HWStoreLogin.html')
+        return render(request, 'Login.html')
     
 def logout_user(request):
     auth.logout(request)
@@ -60,7 +66,8 @@ def logout_user(request):
 def home(request):
     return render(request, 'HWStoreIndex.html')
 
-# Update it here
+# Edicion de perfil de usuarios
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -71,8 +78,8 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
-            return redirect('profile') # Redirect back to profile page
+            messages.success(request, f'Su cuenta fue actualizada!')
+            return redirect('profile')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -83,4 +90,4 @@ def profile(request):
         'p_form': p_form
     }
 
-    return render(request, 'HWStoreProfile.html', context)
+    return render(request, 'Account_Profile.html', context)

@@ -15,33 +15,33 @@ urlpatterns = [
     path(
         'change-password/',
         auth_views.PasswordChangeView.as_view(
-            template_name='HWStoreChangePass.html',
+            template_name='Account_Change_Password.html',
             success_url='/'
         ),
         name='change_password'
     ),
-    # Forget Password
+    # Olvide la contraseña
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
-             template_name='HWStoreResetPass.html',
-             subject_template_name='HWStoreResetSubject.txt',
-             email_template_name='HWStoreResetEmail.html',
-             # success_url='/login/'
+             template_name='Account_Reset_Password.html',
+             subject_template_name='Account_Reset_Subject.txt',
+             email_template_name='Account_Reset_Email.html',
+             success_url='login_user'
          ),
          name='password_reset'),
     path('password-reset/done/',
          auth_views.PasswordResetDoneView.as_view(
-             template_name='HWStoreResetDone.html'
+             template_name='Account_Reset_Done.html'
          ),
          name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(
-             template_name='HWStoreResetConfirm.html'
+             template_name='Account_Reset_Confirm.html'
          ),
          name='password_reset_confirm'),
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(
-             template_name='HWStoreResetSuccess.html'
+             template_name='Account_Reset_Success.html'
          ),
          name='password_reset_complete'),
     path('profile/', user_views.profile, name='profile'),

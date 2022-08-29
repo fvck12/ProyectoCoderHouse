@@ -66,12 +66,16 @@
                         </button>
                     </form>
                     <ul></ul>
-                    <form action="{% url 'logout_user' %}" class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            Salir 
-                            <b>{{user.username}}</b>
-                        </button>
-                    </form>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{user.username}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">Editar mi perfil</a></li>
+                            <li><a class="dropdown-item" href="{% url 'change_password' %}">Cambiar contraseña</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout_user' %}">Desconectar</a></li>
+                        </ul>
+                    </div> 
                 {% else %}
                     <form action="{% url 'login_user' %}" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">Conectar</button>
