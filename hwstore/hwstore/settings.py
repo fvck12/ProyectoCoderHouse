@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'HWStockApp',
     'djmoney',
     'import_export',
+    'Accounts'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Default URL redirect
 
 # LOGIN_URL = '/HWStoreApp/AccessDenied'
+
+AUTH_USER_MODEL = "Accounts.User"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

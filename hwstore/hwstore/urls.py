@@ -10,12 +10,12 @@ from HWStoreApp.views import HWStoreInicio
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('Accounts.urls')),
     path('', HWStoreInicio, name="HWStoreInicio"),
     path('HWStoreApp/', include(store_url)),
     path('HRApp/', include(hr_url)),
     path('HWStockApp/', include(hwstock_url)),
-    path('Registro/', Register, name="Registro"),    
+    #path('Registro/', Register, name="Registro"),    
 ]
 
 if settings.DEBUG:
