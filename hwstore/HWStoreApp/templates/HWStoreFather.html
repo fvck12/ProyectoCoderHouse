@@ -66,18 +66,18 @@
                         </button>
                     </form>
                     <ul></ul>
-                    <form action="{% url 'LogoutStore' %}" class="d-flex">
+                    <form action="{% url 'logout_user' %}" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             Salir 
                             <b>{{user.username}}</b>
                         </button>
                     </form>
                 {% else %}
-                    <form action="{% url 'LoginStore' %}" class="d-flex">
+                    <form action="{% url 'login_user' %}" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">Conectar</button>
                     </form>
                     <ul></ul>
-                    <form action="{% url 'Registro' %}" class="d-flex">
+                    <form action="{% url 'ClienteRegistro' %}" class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">Registrar</button>
                     </form>
                 {% endif %}

@@ -27,7 +27,9 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='left' action="" method="POST">{% csrf_token %}
+        <form ALIGN='left' action="{% url 'ClienteRegistro' %}" method="POST">
+            
+            {% csrf_token %}
 
             {{form.as_p}}
 
