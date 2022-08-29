@@ -27,14 +27,15 @@ Pasos:
 ### Uso de la web
 
 * admin/ administracion
-* webapp/ 'Pagina inicial'
-* webapp/formProductos/ 'Formulario de alta de producto'
-* webapp/listaProductos/ 'Formulario de lista de productos en formato tabla'
-* webapp/formEmpleado/ 'Formulario de alta de empleado'
-* webapp/listaEmpleados/ 'Formulario de lista de empleado en formato tabla'
+* ""/ 'Pagina inicial'
+* HWStockApp/CrearProducto/ 'Formulario de alta de producto'
+* HWStockApp/ListarProductos/ 'Formulario de lista de productos en formato tabla'
+* HWStoreApp/ComprarProductos/ 'Lista paginada de los productos con carro de compras'
+* HRApp/CrearEmpleados/ 'Formulario de alta de empleado'
+* HRApp/ListaEmpleados/ 'Formulario de lista de empleado en formato tabla'
 
-webapp/formCliente/ 'Formulario de alta de cliente'
-webapp/listaClientes/ 'Formulario de lista de cliente en formato tabla'
+* HRApp/CrearClientes/ 'Formulario de alta de cliente'
+* HRApp/ListaClientes/ 'Formulario de lista de cliente en formato tabla'
 
 ## Developers
 
