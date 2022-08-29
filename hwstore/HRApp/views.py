@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from django.contrib import messages
 
 from HRApp.models import Empleado, Cliente
+from HRApp.forms import CreateClientForm
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin as LoginRequieredHRApp, AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin as LoginRequieredHRApp
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -26,14 +29,6 @@ def LoginHRApp(request):
                 return redirect("/HRApp/")
     form = AuthenticationForm()
     return render(request, "hrAppLogin.html", {"form": form})
-
-
-class LogoutIfNotStaffMixin(AccessMixin):
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_staff:
-            logout(request)
-            return self.handle_no_permission()
-        return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
 
 ############################## Pagina principal ##############################
 
@@ -76,7 +71,22 @@ class CrearEmpleados(LoginRequieredHRApp, CreateView):
     template_name = 'crearEmpleados.html'
     fields = ['nombre', 'apellido', 'sexo', 'fecha_nacimiento', 'dni', 'email',
               'direccion', 'telefono', 'salario', 'puesto', 'horario', 'foto_empleado']
-    success_url = '/HRApp/ListaEmpleados'
+
+    def get_success_url(self):
+        # replace url name 'users' on your if need
+        return reverse('ListaEmpleados', args=(self.request.user.id,))
+
+    def form_valid(self, form):
+        user = self.request.user
+        instance, _ = Empleado.objects.get_or_create(user=user)
+        instance.rate = form.cleaned_data.get("rate", "")
+        instance.availability = form.cleaned_data.get("availability", "")
+        instance.save()
+        # modify return
+        return HttpResponseRedirect(self.get_success_url())
+
+    #success_url = '/HRApp/ListaEmpleados'
+
 
 # Staff Member
 
@@ -124,12 +134,30 @@ class BusquedaCliente(LoginRequieredHRApp, ListView):
 
 
 class CrearClientes(LoginRequieredHRApp, CreateView):
-    model = Cliente
     template_name = 'crearCliente.html'
-    fields = ['nombre', 'apellido', 'nombre_usuario', 'sexo', 'fecha_nacimiento',
-              'dni', 'email', 'direccion', 'telefono', 'foto_cliente']
-    success_url = '/HRApp/ListaClientes'
+    form_class = CreateClientForm
 
+    def form_valid(self, form):
+        c = {'form': form, }
+        user_id = form.save(commit=False)
+        dni = form.cleaned_data['dni']
+        fecha_nacimiento = form.cleaned_data['fecha_nacimiento']
+        direccion = form.cleaned_data['direccion']
+        telefono = form.cleaned_data['telefono']
+        password = form.cleaned_data['password']
+        repeat_password = form.cleaned_data['repeat_password']
+        if password != repeat_password:
+            messages.error(self.request, "Passwords do not Match",
+                           extra_tags='alert alert-danger')
+            return render(self.request, self.template_name, c)
+        user_id.set_password(password)
+        user_id.save()
+
+        # Create UserProfile model
+        Cliente.objects.create(
+            user_id=user_id, dni = dni, fecha_nacimiento = fecha_nacimiento, direccion=direccion, telefono=telefono)
+        return super(CrearClientes, self).form_valid(form)
+    success_url = '/HRApp/ListaClientes'
 # Staff Member
 
 
