@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hwstore',
+    'Accounts',
     'HWStoreApp',
-    'HRApp',
     'HWStockApp',
     'djmoney',
     'import_export',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ES'
 
 TIME_ZONE = 'UTC'
 
@@ -135,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Default URL redirect
 
 # LOGIN_URL = '/HWStoreApp/AccessDenied'
+
+AUTH_USER_MODEL = "Accounts.User"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
