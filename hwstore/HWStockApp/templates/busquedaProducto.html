@@ -64,13 +64,15 @@
                     </button>
                 </td>
             </tr>
-            {% endfor %}
+            {% endfor %}            
         </ul>
+        {% else %}
+        <div class="container justify-content-center">
+            <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
+        </div>
         {% endif %}
     </table>
-    <div class="container justify-content-center">
-        <p style="text-align:center">No hubo coincidencias para <strong>{{request.GET.nombre}}</strong></p>
-    </div>
+    
     <div class="container justify-content-center">
         <a href="{% url 'CrearProducto' %}">
             <p style="text-align:center">Añade Producto</p>

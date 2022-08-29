@@ -67,8 +67,10 @@ class ComprarProductos(ListView):
 
 
 class BusquedaProducto(ListView):
+    paginate_by = 4 
     template_name = 'busquedaProducto.html'
-    model = Productos
+    model = Productos 
+      
 
     def get_queryset(self):
         query = self.request.GET.get('nombre')
@@ -76,7 +78,7 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.filter(nombre__icontains=query)
         else:
             object_list = self.model.objects.none()
-        return object_list
+        return object_list   
 
 ############################## Carrito ##############################
 

@@ -19,7 +19,7 @@ class Productos(models.Model):
     categoria_opcion = (
         ('C', 'Construccion',),
         ('P', 'Pintura',),
-        ('B', 'Bannos',),
+        ('B', 'Baños',),
         ('M', 'Madera',),
         ('H', 'Hogar',),
         ('J', 'Jardin',),
