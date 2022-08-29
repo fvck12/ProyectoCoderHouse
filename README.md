@@ -1,9 +1,9 @@
 # ProyectoCoderHouse
-Proyecto de fin de año
+Proyecto de fin de curso
 
 ## Descripcion
 
-Esta es la entrega intermedia del proyecto final, una simple webapp que gestiona, productos, clientes y empleados, se crean, se listan, se buscan, se editan y se eliminan, mediante formularios.
+Esta es una web de una ferreteria que tiene login, registro, edicion de perfil con imagen, cambiar contraseña, con un carrito de compra, donde se pueden agregar productos.
 
 ## Getting Started
 
@@ -17,8 +17,9 @@ Pasos:
 
 * pip install Django
 * pip install Pillow
-* pip install django-money
+* pip install django-cripsy-forms
 * pip install django-import-export
+* echo "from Accounts.models import User; User.objects.create_superuser('hwstoreadmin', 'hwstoreadmin@gmail.com', 'Homero123')" | python manage.py shell
 
 ### Ejecutar el servidor
 
