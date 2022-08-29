@@ -61,7 +61,7 @@ def HWStoreCarrito(request):
 class ComprarProductos(ListView):
     model = Productos
     template_name = 'comprarProductos.html'
-    paginate_by = 4
+    paginate_by = 8
     fields = ('__all__')
    
 

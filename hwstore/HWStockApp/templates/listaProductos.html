@@ -32,7 +32,12 @@
             </p>
         </form>
     </div>
-    <table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+    <div class="container justify-content-center">
+        <a href="{% url 'CrearProducto' %}">
+            <p style="text-align:center">Crear Producto</p>
+        </a>
+    </div>
+    <table style="border:1px solid black;margin-left:auto;margin-right:auto;width:75%">
         <tr>
             <th scope="col">Foto</th>
             <th scope="col">Nombre</th>
@@ -40,6 +45,7 @@
             <th scope="col">Categoría</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
+            <th scope="col">Opciones</th>
         </tr>
         <ul>
             {% for producto in object_list %}
@@ -52,7 +58,7 @@
                 <td>{{producto.nombre}}</td>
                 <td>{{producto.marca}}</td>
                 <td>{{producto.categoria}}</td>
-                <td>{{producto.precio}}</td>
+                <td>US$ {{producto.precio}}</td>
                 <td>{{producto.stock}}</td>
                 <td>
                     <button>
@@ -65,12 +71,7 @@
             </tr>
             {% endfor %}
         </ul>
-    </table>
-    <div class="container justify-content-center">
-        <a href="{% url 'CrearProducto' %}">
-            <p style="text-align:center">Crear Producto</p>
-        </a>
-    </div>
+    </table>   
 </section>
 
 {% endblock body_section %}
