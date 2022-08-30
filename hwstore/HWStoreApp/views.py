@@ -55,6 +55,10 @@ def HWStoreCarrito(request):
     
     return render(request, "HWStoreCarrito.html")
 
+def NoWebPage(request):
+    
+    return render(request, "NoWebPage.html")
+
 ############################## Productos ##############################
 
 

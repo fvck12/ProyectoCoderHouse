@@ -25,7 +25,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Ferreteria</a>
+            <a class="navbar-brand" href="{% url 'HWStoreInicio' %}">Ferreteria</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -52,8 +52,8 @@
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
-                            <li><a class="dropdown-item" href="#!">Articulos populares</a></li>
-                            <li><a class="dropdown-item" href="#!">Nuevos articulos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'NoWebPage' %}">Articulos populares</a></li>
+                            <li><a class="dropdown-item" href="{% url 'NoWebPage' %}">Nuevos articulos</a></li>
                         </ul>
                     </li>
                 </ul>
