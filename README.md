@@ -11,7 +11,7 @@ Esta es una web de una ferreteria que tiene login, registro, edicion de perfil c
 
 Pasos: 
 
-* git clone https://github.com/fvck12/Entrega-Intermedia.git
+* git clone https://github.com/fvck12/ProyectoCoderHouse.git
 
 * Pre-Requisitos para ejecutar la web.
 
