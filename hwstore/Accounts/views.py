@@ -36,7 +36,7 @@ def register(request):
                 profile = Profile(user=user)
                 profile.save()
                 
-                return redirect('login_user')
+                return redirect('login')
 
         else:
             messages.info(request, 'Las contraseñas no coinciden')
@@ -59,7 +59,7 @@ def login_user(request):
             return redirect('home')
         else:
             messages.info(request, 'Usuario o contraseña inválidos')
-            return redirect('login_user')
+            return redirect('login')
 
     else:
         return render(request, 'Login.html')

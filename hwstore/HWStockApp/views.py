@@ -41,14 +41,14 @@ def HWStockInicio(request):
 ############################## Productos ##############################
 
 
-class ListarProductos(LoginRequiredMixin, ListView):
+class ListarProductos(LoginRequiredMixin, LogoutIfNotStaffMixin, ListView):
     model = Productos
     template_name = 'listaProductos.html'
     fields = ('__all__')
     paginate_by: 10
 
 
-class BusquedasProducto(LoginRequiredMixin, ListView):
+class BusquedasProducto(LoginRequiredMixin, LogoutIfNotStaffMixin, ListView):
     template_name = 'HWStockBuscarProducto.html'
     model = Productos
 
@@ -61,7 +61,7 @@ class BusquedasProducto(LoginRequiredMixin, ListView):
         return object_list
 
 
-class CrearProducto(LoginRequiredMixin, CreateView):
+class CrearProducto(LoginRequiredMixin, LogoutIfNotStaffMixin, CreateView):
     model = Productos
     template_name = 'crearProductos.html'
     fields = ('__all__')
@@ -69,7 +69,7 @@ class CrearProducto(LoginRequiredMixin, CreateView):
 
 
 
-class ActualizarProductos(LoginRequiredMixin, UpdateView):
+class ActualizarProductos(LoginRequiredMixin, LogoutIfNotStaffMixin, UpdateView):
     model = Productos
     template_name = 'actualizarProducto.html'
     fields = ('__all__')
@@ -77,7 +77,7 @@ class ActualizarProductos(LoginRequiredMixin, UpdateView):
 
 
 
-class BorrarProductos(LoginRequiredMixin, DeleteView):
+class BorrarProductos(LoginRequiredMixin, LogoutIfNotStaffMixin, DeleteView):
     model = Productos
     template_name = 'borrarProducto.html'
     fields = ('__all__')

@@ -8,7 +8,7 @@ urlpatterns = [
     # Registro
     path("register", views.register, name="register"),
     # Iniciar sesión
-    path("login_user", views.login_user, name="login_user"),
+    path("login", views.login_user, name="login"),
     # Cerrar sesión
     path("logout_user", views.logout_user, name="logout_user"),
     # Cambiar contraseña
@@ -26,7 +26,7 @@ urlpatterns = [
              template_name='Account_Reset_Password.html',
              subject_template_name='Account_Reset_Subject.txt',
              email_template_name='Account_Reset_Email.html',
-             success_url='login_user'
+             success_url='login'
          ),
          name='password_reset'),
     path('password-reset/done/',
