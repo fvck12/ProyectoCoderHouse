@@ -3,45 +3,43 @@
 {% load static %}
 
 {% block title_section %}
-
-<title>Borrar Producto</title>
-
-{% endblock title_section %}
+  <title>Borrar Producto</title>
+{% endblock %}
 
 {% block header_section %}
-
-<header class="bg-dark py-5">
+  <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Borrar Producto</h1>
-            <p class="lead fw-normal text-white-50 mb-0">+</p>
-        </div>
+      <div class="text-center text-white">
+        <h1 class="display-4 fw-bolder">Borrar Producto</h1>
+        <p class="lead fw-normal text-white-50 mb-0">+</p>
+      </div>
     </div>
-</header>
-
-{% endblock header_section %}
+  </header>
+{% endblock %}
 
 {% block body_section %}
-
-<section class="py-5">
+  <section class="py-5">
     <div class="container justify-content-center">
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Required meta tags -->
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <div class="mx-auto" style="width: 500px;">
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            <div class="text-center text-white">
-                <p style="text-align:center" class="lead fw-normal text-black-50 mb-0"> ¿Seguro que desea eliminar el
-                    producto <b>{{productos.nombre}}</b>?
-                    <input style="text-align:center" type="submit" value="Confirmar">
-                </p>
-            </div>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+      <div class="mx-auto" style="width: 500px;">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="text-center text-white">
+            <p style="text-align:center" class="lead fw-normal text-black-50 mb-0">
+              ¿Seguro que desea eliminar el
+
+              producto <b>{{ productos.nombre }}</b>?
+
+              <button style="margin-left:25%; margin-right:25%;" class="btn btn-outline-dark" type="submit">Confirmar</button>
+            </p>
+          </div>
         </form>
-        </div>
+      </div>
     </div>
-</section>
-
-{% endblock body_section %}
+  </section>
+{% endblock %}

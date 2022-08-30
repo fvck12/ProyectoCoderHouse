@@ -35,7 +35,7 @@
         <form action="{% url 'BusquedasProducto' %}" method="GET" enctype="multipart/form-data">{% csrf_token %}
             <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
                     placeholder="Escriba aqui el producto">
-                <input type="submit" value="Buscar">
+                <button type="submit" class="btn btn-outline-dark">Buscar</button>
             </p>
         </form>
         </div>
@@ -53,7 +53,7 @@
             <th scope="col">Categoría</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
-            <th scope="col">Opciones</th>
+            <th style="text-align: center;" colspan="2">Opciones</th>
         </tr>
         <ul>
             {% for producto in object_list %}
@@ -69,12 +69,18 @@
                 <td>US$ {{producto.precio}}</td>
                 <td>{{producto.stock}}</td>
                 <td>
-                    <button>
-                        <a href="{% url 'BorrarProductos' producto.id %}">Eliminar</a>
-                    </button>
-                    <button>
-                        <a href="{% url 'ActualizarProductos' producto.id %}">Editar</a>
-                    </button>
+                    <form action="{% url 'BorrarProductos' producto.id %}" class="d-flex">
+                        <button style="margin-left:25%; margin-right:25%;" class="btn btn-outline-dark" type="submit">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'ActualizarProductos' producto.id %}" class="d-flex">
+                        <button style="margin-left:25%; margin-right:25%;" class="btn btn-outline-dark" type="submit">
+                            Editar
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

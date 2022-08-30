@@ -36,7 +36,7 @@
         <div class="mx-auto" style="width: 500px;">
         <form ALIGN='left' method="POST" enctype="multipart/form-data">{% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" value="Enviar">
+            <button type="submit" class="btn btn-outline-dark">Actualizar</button>
         </form>
         </div>
     </div>
