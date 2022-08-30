@@ -53,3 +53,5 @@ Nicolas Martinez
 
 * 0.1
     * Version Inicial
+* 52
+    * Version final
