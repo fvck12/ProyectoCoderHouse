@@ -23,14 +23,24 @@
 
 {% block body_section %}
 
+{% load crispy_forms_tags %}
+
 <section class="py-5">
     <div class="container justify-content-center">
-        <form ALIGN='left' action="{% url 'CrearProducto' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            {{form.as_p}}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <div class="mx-auto" style="width: 500px;">
+            <form ALIGN='left' action="{% url 'CrearProducto' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
 
-            <input type="submit" value="Enviar">
-        </form>
+                {{ form|crispy }}
+
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
     </div>
 </section>
 

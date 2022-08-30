@@ -1,5 +1,5 @@
 from django.urls import path
-from HWStockApp.views import ListarProductos, BusquedaProducto, CrearProducto, ActualizarProductos, BorrarProductos
+from HWStockApp.views import ListarProductos, BusquedasProducto, CrearProducto, ActualizarProductos, BorrarProductos
 from HWStockApp.views import HWStockInicio, LoginStock
 from django.contrib.auth.views import LogoutView
 
@@ -15,5 +15,5 @@ urlpatterns = [
          ActualizarProductos.as_view(), name="ActualizarProductos"),
     path('BorrarProductos/<int:pk>',
          BorrarProductos.as_view(), name="BorrarProductos"),
-    path('BusquedaProducto/', BusquedaProducto.as_view(), name="BusquedaProducto"),
+    path('BusquedasProducto/', BusquedasProducto.as_view(), name="BusquedasProducto"),
 ]

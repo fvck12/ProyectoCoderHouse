@@ -3,12 +3,9 @@ from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
 from HWStockApp.models import Productos
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-
 
 ############################## Login ##############################
 
@@ -36,8 +33,6 @@ class LogoutIfNotStaffMixin(AccessMixin):
         return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
 
 ############################## Pagina principal ##############################
-# @login_required
-
 
 def HWStockInicio(request):
 
@@ -45,20 +40,16 @@ def HWStockInicio(request):
 
 ############################## Productos ##############################
 
-# @login_required
 
-
-class ListarProductos(ListView):
+class ListarProductos(LoginRequiredMixin, ListView):
     model = Productos
     template_name = 'listaProductos.html'
     fields = ('__all__')
     paginate_by: 10
 
-# @login_required
 
-
-class BusquedaProducto(ListView):
-    template_name = 'busquedaProducto.html'
+class BusquedasProducto(LoginRequiredMixin, ListView):
+    template_name = 'HWStockBuscarProducto.html'
     model = Productos
 
     def get_queryset(self):
@@ -69,8 +60,6 @@ class BusquedaProducto(ListView):
             object_list = self.model.objects.none()
         return object_list
 
-# Staff Member
-
 
 class CrearProducto(LoginRequiredMixin, CreateView):
     model = Productos
@@ -78,7 +67,6 @@ class CrearProducto(LoginRequiredMixin, CreateView):
     fields = ('__all__')
     success_url = '/HWStockApp/ListarProductos/'
 
-# Staff Member
 
 
 class ActualizarProductos(LoginRequiredMixin, UpdateView):
@@ -87,7 +75,6 @@ class ActualizarProductos(LoginRequiredMixin, UpdateView):
     fields = ('__all__')
     success_url = '/HWStockApp/ListarProductos/'
 
-# Staff Member
 
 
 class BorrarProductos(LoginRequiredMixin, DeleteView):

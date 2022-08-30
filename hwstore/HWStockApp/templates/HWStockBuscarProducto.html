@@ -25,6 +25,13 @@
 
 <section class="py-5">
     <div class="container justify-content-center">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <div class="mx-auto" style="width: 500px;">
         <form method="GET" enctype="multipart/form-data">{% csrf_token %}
             <p style="text-align:center"> Busqueda: <input style="text-align:center" type="text" name="nombre"
                     placeholder="Escriba aqui el producto">
@@ -72,7 +79,7 @@
         </div>
         {% endif %}
     </table>
-    
+    </div> 
     <div class="container justify-content-center">
         <a href="{% url 'CrearProducto' %}">
             <p style="text-align:center">Añade Producto</p>

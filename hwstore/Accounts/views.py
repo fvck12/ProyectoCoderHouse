@@ -5,6 +5,11 @@ from Accounts.models import User, Profile
 from django.contrib.auth.decorators import login_required 
 from Accounts.forms import UserUpdateForm, ProfileUpdateForm
 
+# Pagina de inicio
+
+def home(request):
+    return render(request, 'HWStoreIndex.html')
+
 # Registro de usuarios
 
 def register(request):
@@ -62,9 +67,6 @@ def login_user(request):
 def logout_user(request):
     auth.logout(request)
     return redirect('home')
-
-def home(request):
-    return render(request, 'HWStoreIndex.html')
 
 # Edicion de perfil de usuarios
 

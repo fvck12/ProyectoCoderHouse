@@ -45,6 +45,6 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('profile/', user_views.profile, name='profile'),
-    
+    # Home que renderiza el home de la tienda
     path("home", views.home, name="home")
 ]
