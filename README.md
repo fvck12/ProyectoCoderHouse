@@ -38,6 +38,10 @@ Pasos:
 * HRApp/CrearClientes/ 'Formulario de alta de cliente'
 * HRApp/ListaClientes/ 'Formulario de lista de cliente en formato tabla'
 
+### Video introductorio a la web
+
+https://drive.google.com/file/d/1-XAifmFK_xFHFXzBJV4Uw8P_i4DjTeFV/view?usp=sharing
+
 ## Developers
 
 Nicolas Sandoval
@@ -55,3 +59,4 @@ Nicolas Martinez
     * Version Inicial
 * 52
     * Version final
+
