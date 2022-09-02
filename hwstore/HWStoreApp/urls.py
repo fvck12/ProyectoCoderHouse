@@ -1,15 +1,11 @@
 from django.urls import path
-from HWStoreApp.views import HWStoreInicio, LoginStore, HWStoreAbout, HWStoreBienvenida, HWStoreCarrito, NoWebPage
-from django.contrib.auth.views import LogoutView
+from HWStoreApp.views import HWStoreInicio, HWStoreAbout, HWStoreBienvenida, HWStoreCarrito, NoWebPage
 from HWStoreApp.views import ComprarProductos, BusquedaProducto
 from HWStoreApp.views import agregar_productos, eliminar_productos, restar_productos, eliminar_carrito
 
 urlpatterns = [
     path('', HWStoreInicio, name="HWStoreInicio"),
     path('HWStoreAbout/', HWStoreAbout, name="HWStoreAbout"),
-    path('LoginStore/', LoginStore, name="LoginStore"),
-    path('LogoutStore/', LogoutView.as_view(template_name='HWStoreLogout.html'),
-         name="LogoutStore"),
     path('HWStoreBienvenida/', HWStoreBienvenida, name="HWStoreBienvenida"),
 
     path('ComprarProductos/', ComprarProductos.as_view(), name="ComprarProductos"),

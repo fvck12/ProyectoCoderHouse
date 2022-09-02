@@ -1,39 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-
 from HWStockApp.models import Productos
-from django.views.generic import ListView, DeleteView, CreateView, UpdateView
-
+from django.views.generic import ListView
 from HWStoreApp.carrito import Carrito
-
-
-############################## Login ##############################
-
-def LoginStore(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            usuario = form.cleaned_data.get("username")
-            contra = form.cleaned_data.get("password")
-            user = authenticate(username=usuario, password=contra)
-            if user is not None:
-                login(request, user)
-                return redirect("HWStoreBienvenida")
-            else:
-                return redirect("HWStoreBienvenida")
-    form = AuthenticationForm()
-    return render(request, "HWStoreLogin.html", {"form": form})
-
-class LogoutIfNotStaffMixin(AccessMixin):
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_staff:
-            logout(request)
-            return self.handle_no_permission()
-        return super(LogoutIfNotStaffMixin, self).dispatch(request, *args, **kwargs)
 
 
 ############################## Pagina principal ##############################
